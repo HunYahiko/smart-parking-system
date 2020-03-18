@@ -14,4 +14,5 @@ Finding a free parking slot is a struggle, a bigger one if you are new to the ci
 2. Why Smart Parking System?
 3. Take a look at [Functional Requirements](https://github.com/HunYahiko/smart-parking-system/wiki/Functional-Requirements)
 4. Take a look at [Non-Functional Requirements](https://github.com/HunYahiko/smart-parking-system/wiki/Non-Functional-Requirements)
-5. Take a loot at [Viewpoints](https://github.com/HunYahiko/smart-parking-system/wiki/Viewpoints)
+5. Take a look at [Viewpoints](https://github.com/HunYahiko/smart-parking-system/wiki/Viewpoints)
+6. Take a look at [Project Backlog](https://github.com/HunYahiko/smart-parking-system/issues)
