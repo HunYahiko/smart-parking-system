@@ -1,0 +1,49 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+	<changeSet author="Staseamba (generated)" id="1586644036752-8">
+		<insert tableName="sps_role">
+			<column name="id" value="5cfa8fe1-f61c-4c73-b139-6d5869c5b699"/>
+			<column name="version" valueNumeric="0"/>
+			<column name="name" value="USER"/>
+		</insert>
+		
+		<insert tableName="sps_role">
+			<column name="id" value="195de04b-3055-4ea1-953d-a350302de2e3"/>
+			<column name="version" valueNumeric="0"/>
+			<column name="name" value="ADMIN"/>
+		</insert>
+	
+        <insert tableName="sps_user">
+            <column name="id" value="7f66aaaa-a934-4c92-9deb-2489f1d470ea"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="email" value="user.user@sps.com"/>
+            <column name="first_name" value="user"/>
+            <column name="last_name" value="user"/>
+            <column name="password" value="$2y$12$y.9Q/3cnv/iedywg8YyAY.z.3l2ZZpScJTKthpVz0eO.ydPSFmYcW"/>
+            <column name="phone_number" value="+373 69 171 740"/>
+            <column name="username" value="user"/>
+        </insert>
+		
+		<insert tableName="sps_user">
+            <column name="id" value="f0634983-7a0c-4846-ac49-263b97a5847f"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="email" value="admin.admin@sps.com"/>
+            <column name="first_name" value="admin"/>
+            <column name="last_name" value="admin"/>
+            <column name="password" value="$2y$12$WVAtZdPvQhhOblL80YwqkuY4CLv4wKCFt642vE4Ui3zgWiGgAeYVO"/>
+            <column name="phone_number" value="+373 67 171 740"/>
+            <column name="username" value="admin"/>
+        </insert>
+		
+		<insert tableName="sps_user_sps_role">
+            <column name="user_id" value="7f66aaaa-a934-4c92-9deb-2489f1d470ea"/>
+            <column name="role_id" value="5cfa8fe1-f61c-4c73-b139-6d5869c5b699"/>
+        </insert>
+		
+		<insert tableName="sps_user_sps_role">
+            <column name="user_id" value="f0634983-7a0c-4846-ac49-263b97a5847f"/>
+            <column name="role_id" value="195de04b-3055-4ea1-953d-a350302de2e3"/>
+        </insert>
+		
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,162 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="Staseamba (generated)" id="1586642818753-2">
+        <createTable tableName="message">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="message_pkey"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="address" type="INTEGER"/>
+            <column name="type" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-3">
+        <createTable tableName="sps_address">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="sps_address_pkey"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="street_name" type="VARCHAR(255)"/>
+            <column name="street_number" type="VARCHAR(255)"/>
+            <column name="coordinates_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-4">
+        <createTable tableName="sps_coordinate">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="sps_coordinate_pkey"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="latitude" type="FLOAT8"/>
+            <column name="longitude" type="FLOAT8"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-5">
+        <createTable tableName="sps_level">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="sps_level_pkey"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="logical_id" type="VARCHAR(255)"/>
+            <column name="parking_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-6">
+        <createTable tableName="sps_parking">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="sps_parking_pkey"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="logical_id" type="VARCHAR(255)"/>
+            <column name="address_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-7">
+        <createTable tableName="sps_parking_lot">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="sps_parking_lot_pkey"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="address" type="INTEGER"/>
+            <column name="failed_response_count" type="INTEGER"/>
+            <column name="logical_id" type="VARCHAR(255)"/>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="user_id" type="UUID"/>
+            <column name="level_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bridge_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-8">
+        <createTable tableName="sps_role">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="sps_role_pkey"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-9">
+        <createTable tableName="sps_rpi_bridge">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="sps_rpi_bridge_pkey"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="is_connected" type="BOOLEAN"/>
+            <column name="logical_id" type="VARCHAR(255)"/>
+            <column name="session_id" type="VARCHAR(255)"/>
+            <column name="level_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-10">
+        <createTable tableName="sps_user">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="sps_user_pkey"/>
+            </column>
+            <column name="version" type="BIGINT"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="phone_number" type="VARCHAR(255)"/>
+            <column name="username" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-11">
+        <createTable tableName="sps_user_sps_role">
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-12">
+        <addUniqueConstraint columnNames="email" constraintName="uk_9iwghr7v8umao9pv5rhu2e2d6" tableName="sps_user"/>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-13">
+        <addUniqueConstraint columnNames="phone_number" constraintName="uk_h2c9kvwv64k5w0u72nk160htm" tableName="sps_user"/>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-14">
+        <addForeignKeyConstraint baseColumnNames="bridge_id" baseTableName="sps_parking_lot" constraintName="fk2fwftemj60hvr32q8ipi4ksuu" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="sps_rpi_bridge" validate="true"/>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-15">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="sps_user_sps_role" constraintName="fk3naj1dmtvtxxus7k26qcpm83i" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="sps_user" validate="true"/>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-16">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="sps_parking_lot" constraintName="fk4ppafi2yhai6wauwh0w79lqiy" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="sps_user" validate="true"/>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-17">
+        <addForeignKeyConstraint baseColumnNames="level_id" baseTableName="sps_parking_lot" constraintName="fk8fuqfc58i1plktblf1df8jrvi" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="sps_level" validate="true"/>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-18">
+        <addForeignKeyConstraint baseColumnNames="parking_id" baseTableName="sps_level" constraintName="fkdtpbu6kqxiv94edmf35kt4r3k" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="sps_parking" validate="true"/>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-19">
+        <addForeignKeyConstraint baseColumnNames="level_id" baseTableName="sps_rpi_bridge" constraintName="fkdtrjk4b03fs0tfmw7ngklf33p" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="sps_level" validate="true"/>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-20">
+        <addForeignKeyConstraint baseColumnNames="coordinates_id" baseTableName="sps_address" constraintName="fkfw3sjpnn75pnb3by1h72pkcdq" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="sps_coordinate" validate="true"/>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-21">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="sps_user_sps_role" constraintName="fkn9v8b2j3a69aqvdrncflki84y" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="sps_role" validate="true"/>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1586642818753-22">
+        <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="sps_parking" constraintName="fkr62o6b44rfuec2ccl5kn044r5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="sps_address" validate="true"/>
+    </changeSet>
+	<changeSet author="Staseamba (generated)" id="1586642818753-23">
+        <addUniqueConstraint columnNames="user_id" constraintName="uk_h2c9kvwv64k5w0u72nk274hsj" tableName="sps_parking_lot"/>
+    </changeSet>
+</databaseChangeLog>
