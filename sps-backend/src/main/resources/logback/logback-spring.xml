@@ -8,12 +8,12 @@
         <file>${LOG_HOME}/requests/incoming_requests.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>
-                %d{dd-MM-yyyy HH:mm:ss.SSS} [${username}] %-5level %class{36}.%M - %msg%n
+                %d{dd-MM-yyyy HH:mm:ss.SSS} [%X{username}] %-5level %class{36}.%M - %msg%n
             </Pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>
-                ${LOG_HOME}/requests/archived/logs_%d{dd-MM-yyyy}_%i.log
+                ${LOG_HOME}/requests/archived_requests/incoming_requests_%d{dd-MM-yyyy}_%i.log
             </fileNamePattern>
             <maxFileSize>250MB</maxFileSize>
             <maxHistory>14</maxHistory>
@@ -21,8 +21,38 @@
         </rollingPolicy>
     </appender>
 
+    <appender name="FILES-CONTROLLERS" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <key>controller</key>
+            <defaultValue>defaultController</defaultValue>
+        </discriminator>
+
+        <sift>
+            <appender name="CONTROLLER-${controller}" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>${LOG_HOME}/controllers/${controller}.log</file>
+                <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                    <Pattern>
+                        %d{dd-MM-yyyy HH:mm:ss.SSS} [%X{username}] %-5level %class{36}.%M - %msg%n
+                    </Pattern>
+                </encoder>
+                <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                    <fileNamePattern>
+                        ${LOG_HOME}/controller/archived_controller_logs/${controller}_%d{dd-MM-yyyy}_%i.log
+                    </fileNamePattern>
+                    <maxFileSize>250MB</maxFileSize>
+                    <maxHistory>14</maxHistory>
+                    <totalSizeCap>3GB</totalSizeCap>
+                </rollingPolicy>
+            </appender>
+        </sift>
+    </appender>
+
     <logger name="com.utm.stanislav.parkingapp.configuration.logger.SPSRequestResponseLoggingFilter" additivity="false" level="debug">
         <appender-ref ref="REQUESTS_FOR_FILE"/>
+    </logger>
+
+    <logger name="com.utm.stanislav.parkingapp.service" additivity="false" level="info">
+        <appender-ref ref="FILES-CONTROLLERS"/>
     </logger>
 
 </configuration>
