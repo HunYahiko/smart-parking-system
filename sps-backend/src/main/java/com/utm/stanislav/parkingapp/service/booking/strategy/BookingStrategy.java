@@ -1,4 +1,4 @@
-package com.utm.stanislav.parkingapp.booking;
+package com.utm.stanislav.parkingapp.service.booking.strategy;
 
 import com.utm.stanislav.parkingapp.exceptions.BookingException;
 import com.utm.stanislav.parkingapp.model.Parking;

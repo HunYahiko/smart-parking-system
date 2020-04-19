@@ -1,4 +1,4 @@
-package com.utm.stanislav.parkingapp.decorator;
+package com.utm.stanislav.parkingapp.interceptor.decorator;
 
 import com.utm.stanislav.parkingapp.exceptions.HeaderValueNotFoundException;
 import org.springframework.messaging.MessageHeaders;

@@ -1,6 +1,6 @@
 package com.utm.stanislav.parkingapp.interceptor;
 
-import com.utm.stanislav.parkingapp.decorator.MessageHeadersDecorator;
+import com.utm.stanislav.parkingapp.interceptor.decorator.MessageHeadersDecorator;
 import com.utm.stanislav.parkingapp.exceptions.HeaderValueNotFoundException;
 import com.utm.stanislav.parkingapp.exceptions.RPiBridgeNotFoundException;
 import com.utm.stanislav.parkingapp.service.rpibridge.RPiBridgeService;

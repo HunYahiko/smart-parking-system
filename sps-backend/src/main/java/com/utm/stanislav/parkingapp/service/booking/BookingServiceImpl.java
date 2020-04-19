@@ -1,6 +1,6 @@
 package com.utm.stanislav.parkingapp.service.booking;
 
-import com.utm.stanislav.parkingapp.booking.BookingStrategy;
+import com.utm.stanislav.parkingapp.service.booking.strategy.BookingStrategy;
 import com.utm.stanislav.parkingapp.dto.LevelDTO;
 import com.utm.stanislav.parkingapp.dto.ParkingDTO;
 import com.utm.stanislav.parkingapp.dto.ParkingLotDTO;
@@ -15,7 +15,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
-import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.OptimisticLockException;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor

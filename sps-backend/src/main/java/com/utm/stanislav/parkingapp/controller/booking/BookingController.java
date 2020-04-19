@@ -1,4 +1,4 @@
-package com.utm.stanislav.parkingapp.controller.rest;
+package com.utm.stanislav.parkingapp.controller.booking;
 
 import com.utm.stanislav.parkingapp.dto.ParkingDTO;
 import com.utm.stanislav.parkingapp.dto.ParkingLotDTO;

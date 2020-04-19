@@ -1,4 +1,4 @@
-package com.utm.stanislav.parkingapp.controller;
+package com.utm.stanislav.parkingapp.controller.auth;
 
 import com.utm.stanislav.parkingapp.controller.response.AuthenticationResponse;
 import com.utm.stanislav.parkingapp.dto.LoginDTO;
@@ -28,8 +28,4 @@ public class AuthController {
         AuthenticationResponse response = this.authenticationService.authenticate(loginDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-    
-
-
-
 }
