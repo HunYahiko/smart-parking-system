@@ -4,6 +4,7 @@ import com.utm.stanislav.parkingapp.security.RequestAuthenticationEntryPoint;
 import com.utm.stanislav.parkingapp.security.jwt.JwtAuthenticationTokenFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -51,7 +52,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/v1/api/auth/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/v1/api/users").permitAll()
                 .antMatchers("/parkingApp/**").permitAll()
+                .antMatchers("/v3/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**")
+                .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

@@ -7,6 +7,8 @@ import com.utm.stanislav.parkingapp.model.User;
 import com.utm.stanislav.parkingapp.repository.UserRepository;
 import com.utm.stanislav.parkingapp.security.UserPrincipal;
 import com.utm.stanislav.parkingapp.service.user.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,7 @@ public class UserController {
     
     @GetMapping
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @Operation(summary = "Get all users", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<List<UserDTO>> getAllUsers() {
         List<UserDTO> users = userService.getAllUsers()
                                       .stream()
@@ -46,6 +49,7 @@ public class UserController {
     
     @PutMapping
     @PreAuthorize("hasRole('USER')")
+    @Operation(summary = "Update user", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity updateUsername(@RequestParam(name = "username") String newUsername,
                                          Authentication authentication)
             throws UserValidationException, UserNotFoundException {
@@ -56,6 +60,7 @@ public class UserController {
     
     @DeleteMapping
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @Operation(summary = "Delete user", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity deleteUser(@RequestParam(name = "username") String username) {
         /* TODO
             1. Check authority.

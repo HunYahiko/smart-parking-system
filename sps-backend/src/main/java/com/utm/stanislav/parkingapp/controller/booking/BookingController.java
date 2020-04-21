@@ -5,9 +5,12 @@ import com.utm.stanislav.parkingapp.dto.ParkingLotDTO;
 import com.utm.stanislav.parkingapp.exceptions.BookingException;
 import com.utm.stanislav.parkingapp.security.UserPrincipal;
 import com.utm.stanislav.parkingapp.service.booking.BookingService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +25,8 @@ public class BookingController {
     private BookingService bookingService;
     
     @PostMapping("/")
+    @PreAuthorize("hasRole('USER')")
+    @Operation(summary = "Get all users", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<ParkingLotDTO> bookSpotIn(@RequestBody ParkingDTO parkingDTO)
             throws BookingException {
         String username = fetchUsername();
