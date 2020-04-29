@@ -1,36 +1,31 @@
 package com.utm.stanislav.parkingapp.service.parkinglot;
 
-import com.utm.stanislav.parkingapp.enums.ParkingStatus;
+import com.utm.stanislav.parkingapp.model.enums.ParkingStatus;
 import com.utm.stanislav.parkingapp.model.Level;
 import com.utm.stanislav.parkingapp.model.ParkingLot;
 import com.utm.stanislav.parkingapp.model.RPiBridge;
 import com.utm.stanislav.parkingapp.repository.ParkingLotRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ParkingLotServiceImpl implements ParkingLotService {
     
-    private ParkingLotRepository parkingLotRepository;
-    
-    @Inject
-    public void setParkingLotRepository(ParkingLotRepository parkingLotRepository) {
-        this.parkingLotRepository = parkingLotRepository;
-    }
+    private final ParkingLotRepository parkingLotRepository;
     
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public List<ParkingLot> getAllLotsPairedWith(RPiBridge rPiBridge) {
         return this.parkingLotRepository.findAllByrPiBridge(rPiBridge);
     }
     
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public Optional<ParkingLot> getFreeRandomParkingLotFrom(Level level) {
         List<ParkingLot> parkingLots =
                 this.parkingLotRepository.findByLevelAndParkingStatus(level, ParkingStatus.FREE);

@@ -1,6 +1,6 @@
 package com.utm.stanislav.parkingapp.service.rpibridge;
 
-import com.utm.stanislav.parkingapp.exceptions.RPiBridgeNotFoundException;
+import com.utm.stanislav.parkingapp.model.exceptions.RPiBridgeNotFoundException;
 import com.utm.stanislav.parkingapp.model.RPiBridge;
 
 import java.util.Optional;

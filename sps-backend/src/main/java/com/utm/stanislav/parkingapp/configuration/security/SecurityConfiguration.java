@@ -2,6 +2,9 @@ package com.utm.stanislav.parkingapp.configuration.security;
 
 import com.utm.stanislav.parkingapp.security.RequestAuthenticationEntryPoint;
 import com.utm.stanislav.parkingapp.security.jwt.JwtAuthenticationTokenFilter;
+import com.utm.stanislav.parkingapp.security.jwt.JwtProvider;
+import com.utm.stanislav.parkingapp.service.userdetails.UserDetailsServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -27,20 +30,12 @@ import javax.inject.Named;
         jsr250Enabled = true,
         securedEnabled = true
 )
+@RequiredArgsConstructor
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     
-    private UserDetailsService userDetailsService;
-    private RequestAuthenticationEntryPoint authenticationEntryPoint;
-    
-    @Inject
-    public void setUserDetailsService(@Named("customUserDetailsService")UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
-    
-    @Inject
-    public void setAuthenticationEntryPoint(RequestAuthenticationEntryPoint authenticationEntryPoint) {
-        this.authenticationEntryPoint = authenticationEntryPoint;
-    }
+    private final UserDetailsService userDetailsService;
+    private final RequestAuthenticationEntryPoint authenticationEntryPoint;
+    private final JwtProvider jwtProvider;
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -82,6 +77,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     
     @Bean
     public JwtAuthenticationTokenFilter authenticationTokenFilter() {
-        return new JwtAuthenticationTokenFilter();
+        return new JwtAuthenticationTokenFilter(jwtProvider, userDetailsService);
     }
 }

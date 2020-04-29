@@ -2,9 +2,9 @@ package com.utm.stanislav.parkingapp.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.utm.stanislav.parkingapp.configuration.deserializer.MessageTypeDeserializer;
-import com.utm.stanislav.parkingapp.configuration.serializer.MessageTypeSerializer;
-import com.utm.stanislav.parkingapp.enums.MessageType;
+import com.utm.stanislav.parkingapp.configuration.deserializer.MessageTypeJsonDeserializer;
+import com.utm.stanislav.parkingapp.configuration.serializer.MessageTypeJsonSerializer;
+import com.utm.stanislav.parkingapp.model.enums.MessageType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -21,8 +21,8 @@ public abstract class Message extends GenericEntity {
     
     @Column(name = "type")
     @Enumerated(value = EnumType.STRING)
-    @JsonDeserialize(using = MessageTypeDeserializer.class)
-    @JsonSerialize(using = MessageTypeSerializer.class)
+    @JsonDeserialize(using = MessageTypeJsonDeserializer.class)
+    @JsonSerialize(using = MessageTypeJsonSerializer.class)
     private MessageType messageType;
     
     public Message(Integer address, MessageType messageType) {

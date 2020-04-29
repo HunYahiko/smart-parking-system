@@ -1,21 +1,20 @@
 package com.utm.stanislav.parkingapp.service.role;
 
-import com.utm.stanislav.parkingapp.exceptions.RoleNotFoundException;
 import com.utm.stanislav.parkingapp.model.Role;
 import com.utm.stanislav.parkingapp.repository.RoleRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class RoleServiceImpl implements RoleService {
     
     private static final String BASE_ROLE = "USER";
     
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
     
     @Override
     @Transactional

@@ -1,6 +1,6 @@
 package com.utm.stanislav.parkingapp.repository;
 
-import com.utm.stanislav.parkingapp.enums.ParkingStatus;
+import com.utm.stanislav.parkingapp.model.enums.ParkingStatus;
 import com.utm.stanislav.parkingapp.model.Level;
 import com.utm.stanislav.parkingapp.model.ParkingLot;
 import com.utm.stanislav.parkingapp.model.RPiBridge;

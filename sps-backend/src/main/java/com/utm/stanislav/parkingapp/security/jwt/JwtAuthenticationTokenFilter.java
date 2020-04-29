@@ -1,6 +1,7 @@
 package com.utm.stanislav.parkingapp.security.jwt;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -21,24 +22,13 @@ import java.io.IOException;
 
 @Slf4j
 @RequiredArgsConstructor
-@AllArgsConstructor
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     
     private static final String TOKEN_PREFIX = "Bearer ";
     private static final String AUTHORIZATION_HEADER = "Authorization";
     
-    private JwtProvider jwtProvider;
-    private UserDetailsService userDetailsService;
-    
-    @Inject
-    public void setUserDetailsService(@Named("customUserDetailsService")UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
-    
-    @Inject
-    public void setJwtProvider(JwtProvider jwtProvider) {
-        this.jwtProvider = jwtProvider;
-    }
+    private final JwtProvider jwtProvider;
+    private final UserDetailsService userDetailsService;
     
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)

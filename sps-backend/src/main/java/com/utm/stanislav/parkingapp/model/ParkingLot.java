@@ -3,9 +3,9 @@ package com.utm.stanislav.parkingapp.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.utm.stanislav.parkingapp.configuration.deserializer.ParkingStatusDeserializer;
-import com.utm.stanislav.parkingapp.configuration.serializer.ParkingStatusSerializer;
-import com.utm.stanislav.parkingapp.enums.ParkingStatus;
+import com.utm.stanislav.parkingapp.configuration.deserializer.ParkingStatusJsonDeserializer;
+import com.utm.stanislav.parkingapp.configuration.serializer.ParkingStatusJsonSerializer;
+import com.utm.stanislav.parkingapp.model.enums.ParkingStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -41,8 +41,8 @@ public class ParkingLot extends GenericEntity {
     
     @Column(name = "status")
     @Enumerated(value = EnumType.STRING)
-    @JsonDeserialize(using = ParkingStatusDeserializer.class)
-    @JsonSerialize(using = ParkingStatusSerializer.class)
+    @JsonDeserialize(using = ParkingStatusJsonDeserializer.class)
+    @JsonSerialize(using = ParkingStatusJsonSerializer.class)
     private ParkingStatus parkingStatus;
     
     @JsonIgnore

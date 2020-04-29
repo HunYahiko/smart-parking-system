@@ -1,12 +1,10 @@
 package com.utm.stanislav.parkingapp.configuration.job;
 
-import com.utm.stanislav.parkingapp.enums.FunctionCode;
+import com.utm.stanislav.parkingapp.model.enums.FunctionCode;
 import com.utm.stanislav.parkingapp.model.*;
-import com.utm.stanislav.parkingapp.repository.ParkingRepository;
 import com.utm.stanislav.parkingapp.repository.RPiBridgeRepository;
-import com.utm.stanislav.parkingapp.repository.UserRepository;
-import com.utm.stanislav.parkingapp.service.booking.BookingService;
 import com.utm.stanislav.parkingapp.service.functionmessage.FunctionMessageService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -17,49 +15,17 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
 
-import javax.inject.Inject;
 import java.util.List;
 
 @Configuration
 @EnableScheduling
+@RequiredArgsConstructor
 public class StatusCheckJob {
     
-    private RPiBridgeRepository repository;
-    private FunctionMessageService functionMessageService;
-    private SimpMessagingTemplate brokerMessagingTemplate;
-    private BookingService bookingService;
-    private ParkingRepository parkingRepository;
-    private UserRepository userRepository;
+    private final RPiBridgeRepository repository;
+    private final FunctionMessageService functionMessageService;
+    private final SimpMessagingTemplate brokerMessagingTemplate;
     
-    @Inject
-    public void setRepository(RPiBridgeRepository repository) {
-        this.repository = repository;
-    }
-    
-    @Inject
-    public void setFunctionMessageService(FunctionMessageService functionMessageService) {
-        this.functionMessageService = functionMessageService;
-    }
-    
-    @Inject
-    public void setBrokerMessagingTemplate(SimpMessagingTemplate brokerMessagingTemplate) {
-        this.brokerMessagingTemplate = brokerMessagingTemplate;
-    }
-    
-    @Inject
-    public void setBookingService(BookingService bookingService) {
-        this.bookingService = bookingService;
-    }
-    
-    @Inject
-    public void setParkingRepository(ParkingRepository parkingRepository) {
-        this.parkingRepository = parkingRepository;
-    }
-    
-    @Inject
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
     
     @Scheduled(fixedDelay = 10000, initialDelay = 4000)
     @Transactional

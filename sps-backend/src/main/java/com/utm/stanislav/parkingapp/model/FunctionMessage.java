@@ -2,9 +2,9 @@ package com.utm.stanislav.parkingapp.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.utm.stanislav.parkingapp.configuration.deserializer.FunctionCodeDeserializer;
-import com.utm.stanislav.parkingapp.configuration.serializer.FunctionCodeSerializer;
-import com.utm.stanislav.parkingapp.enums.FunctionCode;
+import com.utm.stanislav.parkingapp.configuration.deserializer.FunctionCodeJsonDeserializer;
+import com.utm.stanislav.parkingapp.configuration.serializer.FunctionCodeJsonSerializer;
+import com.utm.stanislav.parkingapp.model.enums.FunctionCode;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,8 +16,8 @@ import java.util.UUID;
 @Named
 public class FunctionMessage extends Message {
     
-    @JsonSerialize(using = FunctionCodeSerializer.class)
-    @JsonDeserialize(using = FunctionCodeDeserializer.class)
+    @JsonSerialize(using = FunctionCodeJsonSerializer.class)
+    @JsonDeserialize(using = FunctionCodeJsonDeserializer.class)
     private FunctionCode functionCode;
     
     private UUID parkingLotId;

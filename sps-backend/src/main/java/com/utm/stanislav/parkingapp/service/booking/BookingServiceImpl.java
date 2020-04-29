@@ -1,40 +1,39 @@
 package com.utm.stanislav.parkingapp.service.booking;
 
 import com.utm.stanislav.parkingapp.service.booking.strategy.BookingStrategy;
-import com.utm.stanislav.parkingapp.dto.LevelDTO;
-import com.utm.stanislav.parkingapp.dto.ParkingDTO;
-import com.utm.stanislav.parkingapp.dto.ParkingLotDTO;
-import com.utm.stanislav.parkingapp.enums.ParkingStatus;
-import com.utm.stanislav.parkingapp.exceptions.BookingException;
+import com.utm.stanislav.parkingapp.web.dto.LevelDTO;
+import com.utm.stanislav.parkingapp.web.dto.ParkingDTO;
+import com.utm.stanislav.parkingapp.web.dto.ParkingLotDTO;
+import com.utm.stanislav.parkingapp.model.enums.ParkingStatus;
+import com.utm.stanislav.parkingapp.model.exceptions.BookingException;
 import com.utm.stanislav.parkingapp.model.Parking;
 import com.utm.stanislav.parkingapp.model.ParkingLot;
 import com.utm.stanislav.parkingapp.model.User;
 import com.utm.stanislav.parkingapp.service.parking.ParkingService;
 import com.utm.stanislav.parkingapp.service.user.UserService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.OptimisticLockException;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class BookingServiceImpl implements BookingService {
     
-    private ApplicationContext context;
-    private ParkingService parkingService;
-    private UserService userService;
-    private BookingStrategySelectorMBean bookingStrategySelector;
+    private final ApplicationContext context;
+    private final ParkingService parkingService;
+    private final UserService userService;
+    private final BookingStrategySelectorMBean bookingStrategySelector;
     
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     @Retryable(
             value = OptimisticLockException.class,
             maxAttempts = 5,

@@ -1,50 +1,44 @@
 package com.utm.stanislav.parkingapp.service.user;
 
-import com.utm.stanislav.parkingapp.dto.UserDTO;
-import com.utm.stanislav.parkingapp.exceptions.RoleNotFoundException;
-import com.utm.stanislav.parkingapp.exceptions.UserCreationException;
-import com.utm.stanislav.parkingapp.exceptions.UserNotFoundException;
-import com.utm.stanislav.parkingapp.exceptions.UserValidationException;
+import com.utm.stanislav.parkingapp.model.exceptions.UserNotFoundException;
+import com.utm.stanislav.parkingapp.model.exceptions.UserValidationException;
 import com.utm.stanislav.parkingapp.model.Role;
 import com.utm.stanislav.parkingapp.model.User;
-import com.utm.stanislav.parkingapp.repository.RoleRepository;
 import com.utm.stanislav.parkingapp.repository.UserRepository;
 import com.utm.stanislav.parkingapp.service.role.RoleService;
 import com.utm.stanislav.parkingapp.validators.user.UserValidator;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     
-    private UserRepository userRepository;
-    private RoleService roleService;
-    private UserValidator userValidator;
+    private final UserRepository userRepository;
+    private final RoleService roleService;
+    private final UserValidator userValidator;
     
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public Optional<User> getUserByUsername(String username) {
         return this.userRepository.findByUsername(username);
     }
     
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public List<User> getAllUsers() {
         return this.userRepository.findAll();
     }
     
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void createUser(User user) throws UserValidationException {
         userValidator.validateUser(user);
         user.setId(UUID.randomUUID());
@@ -55,7 +49,7 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void updateUsername(String newUsername, String username)
             throws UserValidationException, UserNotFoundException {
         boolean usernameExists = userRepository.existsByUsername(newUsername);
@@ -66,7 +60,7 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void deleteUser(String username) {
         this.userRepository.deleteByUsername(username);
     }

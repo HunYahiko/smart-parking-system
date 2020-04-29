@@ -1,6 +1,6 @@
 package com.utm.stanislav.parkingapp.service.functionmessage;
 
-import com.utm.stanislav.parkingapp.enums.FunctionCode;
+import com.utm.stanislav.parkingapp.model.enums.FunctionCode;
 import com.utm.stanislav.parkingapp.model.FunctionMessage;
 import com.utm.stanislav.parkingapp.model.ParkingLot;
 import com.utm.stanislav.parkingapp.model.RPiBridge;

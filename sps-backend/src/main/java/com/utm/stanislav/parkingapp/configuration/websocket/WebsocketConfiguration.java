@@ -1,6 +1,6 @@
 package com.utm.stanislav.parkingapp.configuration.websocket;
 
-import com.utm.stanislav.parkingapp.interceptor.CustomChannelInterceptor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -11,19 +11,13 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
-import javax.inject.Inject;
-
 @Configuration
 @EnableWebSocketMessageBroker
 @Order(Ordered.HIGHEST_PRECEDENCE + 99)
+@RequiredArgsConstructor
 public class WebsocketConfiguration implements WebSocketMessageBrokerConfigurer {
     
-    private ExecutorChannelInterceptor executorChannelInterceptor;
-    
-    @Inject
-    public void setExecutorChannelInterceptor(CustomChannelInterceptor executorChannelInterceptor) {
-        this.executorChannelInterceptor = executorChannelInterceptor;
-    }
+    private final ExecutorChannelInterceptor executorChannelInterceptor;
     
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {

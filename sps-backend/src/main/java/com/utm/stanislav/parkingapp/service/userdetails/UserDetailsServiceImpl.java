@@ -3,6 +3,7 @@ package com.utm.stanislav.parkingapp.service.userdetails;
 import com.utm.stanislav.parkingapp.model.User;
 import com.utm.stanislav.parkingapp.security.UserPrincipal;
 import com.utm.stanislav.parkingapp.service.user.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,17 +16,13 @@ import javax.inject.Named;
 
 @Service
 @Named(value = "customUserDetailsService")
+@RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
     
-    private UserService userService;
-    
-    @Inject
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
+    private final UserService userService;
     
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
         User user = this.userService.getUserByUsername(username).orElseThrow(

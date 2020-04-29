@@ -1,9 +1,7 @@
 package com.utm.stanislav.parkingapp.service.user;
 
-import com.utm.stanislav.parkingapp.dto.UserDTO;
-import com.utm.stanislav.parkingapp.exceptions.UserCreationException;
-import com.utm.stanislav.parkingapp.exceptions.UserNotFoundException;
-import com.utm.stanislav.parkingapp.exceptions.UserValidationException;
+import com.utm.stanislav.parkingapp.model.exceptions.UserNotFoundException;
+import com.utm.stanislav.parkingapp.model.exceptions.UserValidationException;
 import com.utm.stanislav.parkingapp.model.User;
 
 import java.util.List;
