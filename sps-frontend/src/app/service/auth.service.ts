@@ -9,7 +9,7 @@ import {UserDto} from '../domain/dto/user-dto.model';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly BASE_URL: string = 'http://192.168.0.54:8080';
+  private readonly BASE_URL: string = 'http://localhost:8080';
   private readonly SING_IN_URL: string = '/v1/api/auth/sing-in';
   private readonly SING_UP_URL: string = '/v1/api/users';
   public readonly TOKEN_KEY: string = 'jwtToken';

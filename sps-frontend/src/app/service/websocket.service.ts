@@ -22,7 +22,7 @@ export class WebsocketService {
 
   private getStompConfig(): RxStompConfig {
     const rxStompConfig = new RxStompConfig();
-    rxStompConfig.webSocketFactory = () => new SockJS('http://192.168.0.54:8080/parkingApp');
+    rxStompConfig.webSocketFactory = () => new SockJS('http://localhost:8080/parkingApp');
     rxStompConfig.connectHeaders = {
       login: 'admin',
       password: 'admin'

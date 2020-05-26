@@ -10,7 +10,7 @@ import {LevelLayoutDto} from '../domain/dto/level-layout-dto.model';
   providedIn: 'root'
 })
 export class ParkingLayoutService {
-  private readonly BASE_URL = 'http://192.168.0.54:8080';
+  private readonly BASE_URL = 'http://localhost:8080';
   private readonly LAYOUTS_RESOURCE = '/v1/api/layouts';
 
   constructor(private httpClient: HttpClient) { }
