@@ -1,5 +1,6 @@
 package com.utm.stanislav.parkingapp.validators.user.chain;
 
+import com.utm.stanislav.parkingapp.model.enums.ValidationInputField;
 import com.utm.stanislav.parkingapp.model.exceptions.UserValidationException;
 import com.utm.stanislav.parkingapp.model.User;
 import com.utm.stanislav.parkingapp.repository.UserRepository;
@@ -19,9 +20,8 @@ public class UsernameValidator implements ValidationChain<User> {
     private final UserRepository userRepository;
     
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
     public void validate(User user) throws UserValidationException {
         Boolean userExists = userRepository.existsByUsername(user.getUsername());
-        if (userExists) throw new UserValidationException("Username is taken");
+        if (userExists) throw new UserValidationException("Username is taken", ValidationInputField.USERNAME);
     }
 }

@@ -1,9 +1,13 @@
 package com.utm.stanislav.parkingapp.model.enums;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Optional;
 
 public enum MessageType {
+    @JsonProperty("FUNC")
     FUNCTION_MESSAGE("FUNC"),
+    @JsonProperty("RESP")
     RESPONSE_MESSAGE("RESP");
     
     private String name;

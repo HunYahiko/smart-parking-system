@@ -1,10 +1,13 @@
 package com.utm.stanislav.parkingapp.web.controller;
 
 import com.utm.stanislav.parkingapp.service.functionmessage.FunctionMessageService;
+import com.utm.stanislav.parkingapp.web.dto.ResponseMessageDTO;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 import javax.inject.Inject;
+import java.security.Principal;
 
 @Controller
 public class TestController {
@@ -22,17 +25,15 @@ public class TestController {
         this.brokerMessagingTemplate = brokerMessagingTemplate;
     }
     
-//    @MessageMapping("/test")
-//    @SendToUser(value = "/messages/command", broadcast = false)
-//    public List<Message> testMessage(CommandMessage message, Principal principal) {
-//        System.out.println("I received a new message: " + message);
-//        //this.brokerMessagingTemplate.convertAndSend("/outgoing/test", "Backfire bitch");
-//        List<Message> messageList = new ArrayList<>();
-//        messageList.add(new CommandMessage(12, MessageType.COMMAND_MESSAGE, "doMe"));
-//        messageList.add(new CommandMessage(13, MessageType.COMMAND_MESSAGE, "touchMe"));
-//        return messageList;
-//
-//    }
+    @MessageMapping("/test")
+    public void testMessage(ResponseMessageDTO message, Principal principal) {
+        System.out.println("I received a new message: " + message.toString());
+    }
+    
+    @MessageMapping("/test2")
+    public void testMessage2(String body) {
+        System.out.println(body);
+    }
     
 //    @MessageMapping("/test")
 //    @SendToUser(value = "/messages/function", broadcast = false)

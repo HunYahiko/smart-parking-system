@@ -31,6 +31,10 @@ public class Level extends GenericEntity {
             mappedBy = "level")
     private List<ParkingLot> parkingLots;
     
+    @OneToOne
+    @JoinColumn(name = "level_layout_id")
+    private LevelLayout levelLayout;
+    
     public Level(String logicalId) {
         this.logicalId = logicalId;
     }

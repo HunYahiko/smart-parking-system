@@ -1,0 +1,749 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+ 
+	<changeSet author="Staseamba (generated)" id="1590178089438-2">
+        <insert tableName="sps_coordinate">
+            <column name="id" value="a27d009c-5275-4753-88b5-f4b719cfc674"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="latitude" valueNumeric="47.016239"/>
+            <column name="longitude" valueNumeric="28.837421"/>
+        </insert>
+    </changeSet>
+	<changeSet author="Staseamba (generated)" id="1590178089438-1">
+        <insert tableName="sps_address">
+            <column name="id" value="9eedc24f-e214-4e9c-a320-e58a63708933"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="street_name" value="Strada Bulgară"/>
+            <column name="street_number" value="33/1"/>
+            <column name="coordinates_id" value="a27d009c-5275-4753-88b5-f4b719cfc674"/>
+        </insert>
+    </changeSet>
+	<changeSet author="Staseamba (generated)" id="1590178089438-6">
+        <insert tableName="sps_parking">
+            <column name="id" value="a97a5887-72a1-44f4-9e3d-4ae495d1db5d"/>
+            <column name="version" valueNumeric="1"/>
+            <column name="charging_type" value="FREE_OF_CHARGE"/>
+            <column name="logical_id" value="LOT10"/>
+            <column name="address_id" value="9eedc24f-e214-4e9c-a320-e58a63708933"/>
+        </insert>
+    </changeSet>
+	<changeSet author="Staseamba (generated)" id="1590178089438-5">
+        <insert tableName="sps_level_layout">
+            <column name="id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="length" valueNumeric="15"/>
+            <column name="width" valueNumeric="15"/>
+        </insert>
+    </changeSet>
+	<changeSet author="Staseamba (generated)" id="1590178089438-4">
+        <insert tableName="sps_level">
+            <column name="id" value="2d4d2d88-45d1-4259-9cd8-91f8ae3dbba9"/>
+            <column name="version" valueNumeric="1"/>
+            <column name="logical_id" value="GROUND-LEVEL"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+            <column name="parking_id" value="a97a5887-72a1-44f4-9e3d-4ae495d1db5d"/>
+        </insert>
+    </changeSet>
+	<changeSet author="Staseamba (generated)" id="1590178089438-8">
+        <insert tableName="sps_rpi_bridge">
+            <column name="id" value="e18e2c91-7be7-4da1-b0b3-b9bdea89e531"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="is_connected" valueBoolean="false"/>
+            <column name="logical_id" value="BRIDGE1-GROUNDLEVEL"/>
+            <column name="session_id"/>
+            <column name="level_id" value="2d4d2d88-45d1-4259-9cd8-91f8ae3dbba9"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1590178089438-3">
+        <insert tableName="sps_layout_object">
+            <column name="id" value="e6dbdb65-6d14-42a4-90cf-365c154a7813"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="PARKING_LOT"/>
+            <column name="x" valueNumeric="0"/>
+            <column name="y" valueNumeric="4"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="64460211-9a3c-44ca-9059-ac3297069c41"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="PARKING_LOT"/>
+            <column name="x" valueNumeric="0"/>
+            <column name="y" valueNumeric="5"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="bf4123f2-6517-4f84-9eeb-a701ae13ef83"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="PARKING_LOT"/>
+            <column name="x" valueNumeric="0"/>
+            <column name="y" valueNumeric="6"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="06608adb-3c2a-4fb0-b191-b277bf41ced8"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="PARKING_LOT"/>
+            <column name="x" valueNumeric="0"/>
+            <column name="y" valueNumeric="7"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="0c62a6ed-38f9-49e3-a48c-78f2e0ca739c"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="PARKING_LOT"/>
+            <column name="x" valueNumeric="0"/>
+            <column name="y" valueNumeric="8"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="3e8320ea-bbb5-4f9e-a4d9-96b927b6c2d7"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="PARKING_LOT"/>
+            <column name="x" valueNumeric="0"/>
+            <column name="y" valueNumeric="9"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="afa67b05-aec7-49b6-adb8-9b132b0ece31"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="PARKING_LOT"/>
+            <column name="x" valueNumeric="0"/>
+            <column name="y" valueNumeric="10"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="9229e8b8-547c-4d05-8bee-753c20a4982c"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="LEFT"/>
+            <column name="type" value="PARKING_LOT"/>
+            <column name="x" valueNumeric="7"/>
+            <column name="y" valueNumeric="0"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="6912623f-8822-4726-99fe-33a1db028c77"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="LEFT"/>
+            <column name="type" value="PARKING_LOT"/>
+            <column name="x" valueNumeric="8"/>
+            <column name="y" valueNumeric="0"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="7660524d-10d8-4d2a-b8af-964e3ed5559f"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="LEFT"/>
+            <column name="type" value="PARKING_LOT"/>
+            <column name="x" valueNumeric="9"/>
+            <column name="y" valueNumeric="0"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="755db532-515b-4929-ab00-eceb310314c6"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="2"/>
+            <column name="y" valueNumeric="1"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="bd1b380b-44b4-49ca-89b5-b6e9dd68c5de"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="3"/>
+            <column name="y" valueNumeric="1"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="02c46607-d412-4903-8c1e-700f25635f99"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="4"/>
+            <column name="y" valueNumeric="1"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="ed4f8d17-67b7-465f-b256-8dbf108f2632"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="5"/>
+            <column name="y" valueNumeric="1"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="9a2a87ac-1a11-42f1-8e23-5f25fbb60409"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="6"/>
+            <column name="y" valueNumeric="1"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="f7ca6364-70ce-4de6-a7e9-b0a46749d350"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="7"/>
+            <column name="y" valueNumeric="1"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="946902ea-e263-441a-9432-e03d42123a36"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="8"/>
+            <column name="y" valueNumeric="1"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="02fd6fe6-bdd0-4c32-834a-385f882e9fca"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="9"/>
+            <column name="y" valueNumeric="1"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="9566eed9-0e3a-46d8-a7a6-a8679f6d9c9d"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="10"/>
+            <column name="y" valueNumeric="1"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="e1117633-206c-47fb-99cd-e935c1a3d3a4"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="11"/>
+            <column name="y" valueNumeric="1"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="21e70d0a-bd20-460d-846f-54c90f941fa3"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="12"/>
+            <column name="y" valueNumeric="1"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="2cc09384-925f-4173-80ce-987a67a17786"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="13"/>
+            <column name="y" valueNumeric="1"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="42b22d41-2449-45d3-8efb-92da78991637"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UP"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="14"/>
+            <column name="y" valueNumeric="1"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="61db1ebe-5579-4139-958e-8e7353594557"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UPRIGHT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="1"/>
+            <column name="y" valueNumeric="1"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="94b4b8a0-e0e4-4535-82f3-fc3ebc118550"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="RIGHT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="1"/>
+            <column name="y" valueNumeric="2"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="8145a251-943c-425d-8daa-2513d447b158"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="RIGHT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="1"/>
+            <column name="y" valueNumeric="3"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="eb6e0e2e-5f59-4e15-a6cb-780529d21125"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="RIGHT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="1"/>
+            <column name="y" valueNumeric="4"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="ba3b875a-253e-4cd3-b35f-2af23a469c9d"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="RIGHT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="1"/>
+            <column name="y" valueNumeric="5"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="4fe35a91-2f7f-43b8-af35-95f1f398aad5"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="RIGHT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="1"/>
+            <column name="y" valueNumeric="6"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="bfbc516e-dcbd-4b52-9b03-7b1b528812ec"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="RIGHT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="1"/>
+            <column name="y" valueNumeric="7"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="5517d602-c945-4e17-8618-5f3136e53632"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="RIGHT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="1"/>
+            <column name="y" valueNumeric="8"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="220b44ef-1284-4b81-a5b8-37999236c0ca"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="RIGHT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="1"/>
+            <column name="y" valueNumeric="9"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="fc6787af-04fe-4bed-8d77-c43f33e5fec9"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="RIGHT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="1"/>
+            <column name="y" valueNumeric="10"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="e32de3ae-1f06-4f01-898d-85cdf305d6ff"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="RIGHT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="1"/>
+            <column name="y" valueNumeric="11"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="179bd161-bdbc-4129-9304-e1b2bcb34e94"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="RIGHT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="1"/>
+            <column name="y" valueNumeric="12"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="013cb07f-eae0-4a20-aa40-069724bd7d37"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="RIGHT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="1"/>
+            <column name="y" valueNumeric="13"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="e620c4bf-b6ab-4dde-a091-68f82f47fcb5"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="RIGHT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="1"/>
+            <column name="y" valueNumeric="14"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="cab9f34e-18e3-4738-a195-9cf4c3201b64"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="UPRIGHT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="2"/>
+            <column name="y" valueNumeric="2"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="a4457d4b-2187-4125-bb9f-cc15f2ecbf11"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="DOWN"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="3"/>
+            <column name="y" valueNumeric="2"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="a51b122b-f791-4e2c-afba-3651d635bc8f"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="DOWN"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="4"/>
+            <column name="y" valueNumeric="2"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="b2817eef-cf03-4c3c-9df5-d2ef2adf42f4"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="DOWN"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="5"/>
+            <column name="y" valueNumeric="2"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="ece97859-d031-4df7-a93c-9d184bcc3a5e"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="DOWN"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="6"/>
+            <column name="y" valueNumeric="2"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="14296091-a5c9-406e-b30e-007db5ebdf68"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="DOWN"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="7"/>
+            <column name="y" valueNumeric="2"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="9d64baf8-51f5-4364-84e0-5a9de20c84d9"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="DOWN"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="8"/>
+            <column name="y" valueNumeric="2"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="dca18d6d-1289-4117-8309-afc08fcff0f6"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="DOWN"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="9"/>
+            <column name="y" valueNumeric="2"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="13c0ccce-8b4e-4794-9b6b-8926b07d7a83"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="DOWN"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="10"/>
+            <column name="y" valueNumeric="2"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="ec5ea455-ea98-459f-a84a-097f16c76bef"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="DOWN"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="11"/>
+            <column name="y" valueNumeric="2"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="ac98ad3b-d199-4e95-b64f-7bcaa9b0f11e"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="DOWN"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="12"/>
+            <column name="y" valueNumeric="2"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="5b6c1250-d16d-4c33-ab2e-385b1d28d6ef"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="DOWN"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="13"/>
+            <column name="y" valueNumeric="2"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="d0f25ad0-51bb-4261-9f89-afef67b9df79"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="DOWN"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="14"/>
+            <column name="y" valueNumeric="2"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="f552dee6-145b-4601-b990-a26e3def7c1b"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="LEFT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="2"/>
+            <column name="y" valueNumeric="3"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="1fa9826e-9ceb-4246-8e2a-a1acfc278d21"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="LEFT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="2"/>
+            <column name="y" valueNumeric="4"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="eacfea80-6b6d-4dca-b1b8-b161d54bc679"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="LEFT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="2"/>
+            <column name="y" valueNumeric="5"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="1efd35ce-9509-4f26-bbfa-0d432dd70082"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="LEFT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="2"/>
+            <column name="y" valueNumeric="6"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="9cf3cae5-13b0-4b63-9c07-3343723f4d55"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="LEFT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="2"/>
+            <column name="y" valueNumeric="7"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="76e1ac15-2134-45ea-a675-05b5c47a5eb1"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="LEFT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="2"/>
+            <column name="y" valueNumeric="8"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="f269b939-b66a-48ab-96c9-d318512f9db1"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="LEFT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="2"/>
+            <column name="y" valueNumeric="9"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="b976a8c5-6773-4d8c-bcf2-dac57b39f71d"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="LEFT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="2"/>
+            <column name="y" valueNumeric="10"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="2ff7be53-1631-4857-a977-4fcf77568a6f"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="LEFT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="2"/>
+            <column name="y" valueNumeric="11"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="d069df08-88a1-47cf-bc88-f4c311379716"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="LEFT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="2"/>
+            <column name="y" valueNumeric="12"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="357152ec-d69f-4b32-aa51-db6b6377d74e"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="LEFT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="2"/>
+            <column name="y" valueNumeric="13"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+        <insert tableName="sps_layout_object">
+            <column name="id" value="dfe2621d-9767-411e-a94d-5ccc0d1eee0f"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="orientation" value="LEFT"/>
+            <column name="type" value="ROAD"/>
+            <column name="x" valueNumeric="2"/>
+            <column name="y" valueNumeric="14"/>
+            <column name="level_layout_id" value="845e19c6-1150-4015-a9df-aefc986a0cd7"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Staseamba (generated)" id="1590178089438-7">
+        <insert tableName="sps_parking_lot">
+            <column name="id" value="b315c0c7-1f7e-4ab9-b6d1-f72291c6ad0c"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="1"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT1"/>
+            <column name="status" value="UNRESPONSIVE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="2d4d2d88-45d1-4259-9cd8-91f8ae3dbba9"/>
+            <column name="position"/>
+            <column name="bridge_id" value="e18e2c91-7be7-4da1-b0b3-b9bdea89e531"/>
+			<column name="layout_object_id" value = "7660524d-10d8-4d2a-b8af-964e3ed5559f"/>
+        </insert>
+        <insert tableName="sps_parking_lot">
+            <column name="id" value="fa52f6b6-76b3-4753-8ea6-09ab336bc997"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="2"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT2"/>
+            <column name="status" value="UNRESPONSIVE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="2d4d2d88-45d1-4259-9cd8-91f8ae3dbba9"/>
+            <column name="position"/>
+            <column name="bridge_id" value="e18e2c91-7be7-4da1-b0b3-b9bdea89e531"/>
+			<column name="layout_object_id" value = "6912623f-8822-4726-99fe-33a1db028c77"/>
+        </insert>
+        <insert tableName="sps_parking_lot">
+            <column name="id" value="495a03ee-2651-4eb8-9e6a-5ae142445328"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="3"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT3"/>
+            <column name="status" value="UNRESPONSIVE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="2d4d2d88-45d1-4259-9cd8-91f8ae3dbba9"/>
+            <column name="position"/>
+            <column name="bridge_id" value="e18e2c91-7be7-4da1-b0b3-b9bdea89e531"/>
+			<column name="layout_object_id" value = "9229e8b8-547c-4d05-8bee-753c20a4982c"/>
+        </insert>
+        <insert tableName="sps_parking_lot">
+            <column name="id" value="db92c4f7-4edf-45da-9d5c-f62e9b0772ad"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="4"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT4"/>
+            <column name="status" value="UNRESPONSIVE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="2d4d2d88-45d1-4259-9cd8-91f8ae3dbba9"/>
+            <column name="position"/>
+            <column name="bridge_id" value="e18e2c91-7be7-4da1-b0b3-b9bdea89e531"/>
+			<column name="layout_object_id" value = "e6dbdb65-6d14-42a4-90cf-365c154a7813"/>
+        </insert>
+        <insert tableName="sps_parking_lot">
+            <column name="id" value="291c4c52-8f9c-4e7d-9128-fc0624766949"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="5"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT5"/>
+            <column name="status" value="UNRESPONSIVE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="2d4d2d88-45d1-4259-9cd8-91f8ae3dbba9"/>
+            <column name="position"/>
+            <column name="bridge_id" value="e18e2c91-7be7-4da1-b0b3-b9bdea89e531"/>
+			<column name="layout_object_id" value = "64460211-9a3c-44ca-9059-ac3297069c41"/>
+        </insert>
+        <insert tableName="sps_parking_lot">
+            <column name="id" value="c8dcb199-37b0-4ecc-925b-a66aac993cdb"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="6"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT6"/>
+            <column name="status" value="UNRESPONSIVE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="2d4d2d88-45d1-4259-9cd8-91f8ae3dbba9"/>
+            <column name="position"/>
+            <column name="bridge_id" value="e18e2c91-7be7-4da1-b0b3-b9bdea89e531"/>
+			<column name="layout_object_id" value = "bf4123f2-6517-4f84-9eeb-a701ae13ef83"/>
+        </insert>
+        <insert tableName="sps_parking_lot">
+            <column name="id" value="62b010f3-9a32-4092-a053-00a68572f024"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="7"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT7"/>
+            <column name="status" value="UNRESPONSIVE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="2d4d2d88-45d1-4259-9cd8-91f8ae3dbba9"/>
+            <column name="position"/>
+            <column name="bridge_id" value="e18e2c91-7be7-4da1-b0b3-b9bdea89e531"/>
+			<column name="layout_object_id" value = "06608adb-3c2a-4fb0-b191-b277bf41ced8"/>
+        </insert>
+        <insert tableName="sps_parking_lot">
+            <column name="id" value="5e1155f2-e742-4c71-a5db-09d29f6e63f8"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="8"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT8"/>
+            <column name="status" value="UNRESPONSIVE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="2d4d2d88-45d1-4259-9cd8-91f8ae3dbba9"/>
+            <column name="position"/>
+            <column name="bridge_id" value="e18e2c91-7be7-4da1-b0b3-b9bdea89e531"/>
+			<column name="layout_object_id" value = "0c62a6ed-38f9-49e3-a48c-78f2e0ca739c"/>
+        </insert>
+        <insert tableName="sps_parking_lot">
+            <column name="id" value="faafc7c3-d58f-40fd-9ad0-c7ceba902fc4"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="9"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT9"/>
+            <column name="status" value="UNRESPONSIVE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="2d4d2d88-45d1-4259-9cd8-91f8ae3dbba9"/>
+            <column name="position"/>
+            <column name="bridge_id" value="e18e2c91-7be7-4da1-b0b3-b9bdea89e531"/>
+			<column name="layout_object_id" value = "3e8320ea-bbb5-4f9e-a4d9-96b927b6c2d7"/>
+        </insert>
+        <insert tableName="sps_parking_lot">
+            <column name="id" value="3aa25620-8606-4315-a35f-44f56c924cbf"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="10"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT10"/>
+            <column name="status" value="UNRESPONSIVE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="2d4d2d88-45d1-4259-9cd8-91f8ae3dbba9"/>
+            <column name="position"/>
+            <column name="bridge_id" value="e18e2c91-7be7-4da1-b0b3-b9bdea89e531"/>
+			<column name="layout_object_id" value = "afa67b05-aec7-49b6-adb8-9b132b0ece31"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,59 @@
+<section class="registration-main-layout" fxLayout="row" fxFlexFill fxFlexAlign="center center">
+  <section fxFlex="35%" fxFlex.sm="15%" fxFlex.xs="15%"></section>
+  <section class="registration-main-section" fxFlex="30%" fxFlex.sm="70%" fxFlex.xs="70%" fxLayout="row" fxFlexFill fxFlexAlign="center center">
+    <section fxFlex="100%" style="margin:auto;">
+      <mat-card class="registration-card">
+        <mat-card-title class="registration-card-title">
+          Register
+        </mat-card-title>
+        <mat-card-content class="registration-card-content" style="max-height: 30em; overflow: scroll;">
+          <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <div fxLayout="column" fxFlexAlign="center center">
+              <mat-form-field class="registration-form-field" appearance="outline">
+                <mat-icon matPrefix>email</mat-icon>
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required>
+                <mat-error *ngIf="email.hasError('taken')">This email is used!</mat-error>
+              </mat-form-field>
+              <mat-form-field class="registration-form-field" appearance="outline">
+                <mat-icon matPrefix>perm_identity</mat-icon>
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username" required>
+                <mat-error *ngIf="username.hasError('taken')">This username is taken!</mat-error>
+              </mat-form-field>
+              <mat-form-field class="registration-form-field" appearance="outline">
+                <mat-icon matPrefix>perm_identity</mat-icon>
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" required>
+              </mat-form-field>
+              <mat-form-field class="registration-form-field" appearance="outline">
+                <mat-icon matPrefix>perm_identity</mat-icon>
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" required>
+              </mat-form-field>
+              <mat-form-field class="registration-form-field" appearance="outline">
+                <mat-icon matPrefix>phone</mat-icon>
+                <mat-label>Phone Number</mat-label>
+                <input matInput formControlName="phoneNumber" required>
+                <mat-error *ngIf="phoneNumber.hasError('taken')">This phone number exists!</mat-error>
+              </mat-form-field>
+              <mat-form-field class="registration-form-field" appearance="outline">
+                <mat-icon matPrefix>https</mat-icon>
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" required>
+              </mat-form-field>
+              <mat-form-field class="registration-form-field" appearance="outline">
+                <mat-icon matPrefix>https</mat-icon>
+                <mat-label>Repeat Password</mat-label>
+                <input matInput type="password" formControlName="repeatPassword" required>
+                <mat-error *ngIf="repeatPassword.hasError('mismatch')">Passwords don't match</mat-error>
+              </mat-form-field>
+              <button mat-flat-button class="registration-submit-button" type="submit" [disabled]="!registrationForm.valid">Submit</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </section>
+  </section>
+  <section fxFlex="35%" fxFlex.sm="15%" fxFlex.xs="15%"></section>
+</section>

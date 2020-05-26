@@ -6,13 +6,14 @@ import com.utm.stanislav.parkingapp.model.enums.ParkingStatus;
 import com.utm.stanislav.parkingapp.model.FunctionMessage;
 import com.utm.stanislav.parkingapp.model.ParkingLot;
 import com.utm.stanislav.parkingapp.model.RPiBridge;
+import com.utm.stanislav.parkingapp.model.enums.ResponseStatus;
 import com.utm.stanislav.parkingapp.service.parkinglot.ParkingLotService;
+import com.utm.stanislav.parkingapp.web.dto.ResponseMessageDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,5 +53,39 @@ public class FunctionMessageServiceImpl implements FunctionMessageService {
         return parkingLots.stream()
                        .filter((parkingLot -> !parkingLot.getParkingStatus().equals(ParkingStatus.UNRESPONSIVE)))
                        .collect(Collectors.toList());
+    }
+    
+    @Override
+    @Transactional
+    public void handleResponse(ResponseMessageDTO responseMessage) {
+        UUID parkingLotId = responseMessage.getParkingLotId();
+        Optional<ParkingLot> parkingLotOptional = parkingLotService.getById(parkingLotId);
+        parkingLotOptional.ifPresent(parkingLot -> {
+            if (responseMessage.getResponseStatus() == ResponseStatus.UNRESPONSIVE) {
+                handleUnresponsiveParkingLotMessage(parkingLot);
+            }
+            else {
+                handleSuccessfulResponseMessage(parkingLot, responseMessage);
+            }
+        });
+    }
+    
+    private void handleUnresponsiveParkingLotMessage(ParkingLot parkingLot) {
+        if (parkingLot.getFailedResponseCount() > 5) {
+            parkingLot.setParkingStatus(ParkingStatus.UNRESPONSIVE);
+        }
+        Integer failedResponseCount = parkingLot.getFailedResponseCount() + 1;
+        parkingLot.setFailedResponseCount(failedResponseCount);
+    }
+    
+    private void handleSuccessfulResponseMessage(ParkingLot parkingLot, ResponseMessageDTO responseMessage) {
+        resetFailedResponseCount(parkingLot);
+        List<String> splitResponseData = Arrays.asList(responseMessage.getResponseData().split(","));
+        Optional<ParkingStatus> newParkingStatus = ParkingStatus.valueOfByCode(Integer.parseInt(splitResponseData.get(1)));
+        newParkingStatus.ifPresent(parkingLot::setParkingStatus);
+    }
+    
+    private void resetFailedResponseCount(ParkingLot parkingLot) {
+        parkingLot.setFailedResponseCount(0);
     }
 }

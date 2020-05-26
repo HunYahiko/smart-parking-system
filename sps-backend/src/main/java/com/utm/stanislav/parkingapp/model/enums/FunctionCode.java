@@ -4,7 +4,8 @@ import java.util.Optional;
 
 public enum FunctionCode {
     
-    STATUS_CHECK(1);
+    STATUS_CHECK(1),
+    BLOCK_LOT(2);
     
     private int code;
     

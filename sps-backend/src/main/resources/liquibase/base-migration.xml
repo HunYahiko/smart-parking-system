@@ -4,7 +4,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    <include file="liquibase/migrations/initChangeLog.xml" relativeToChangelogFile="false"/>
-    <include file="liquibase/migrations/initDataChangeLog.xml" relativeToChangelogFile="false"/>
+    <include file="liquibase/migrations/SPS-DDL.xml" relativeToChangelogFile="false"/>
+    <!-- <include file="liquibase/migrations/initDataChangeLog.xml" relativeToChangelogFile="false"/> -->
     <include file="liquibase/migrations/SPS-01.xml" relativeToChangelogFile="false"/>
+    <include file="liquibase/migrations/SPS-03.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

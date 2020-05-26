@@ -1,0 +1,37 @@
+<app-navigation></app-navigation>
+<section class="dashboard-main-layout" fxLayout="row" fxFlexAlign="center center" fxFlexFill>
+  <section fxFlex="100%" style="text-align: center; margin: auto; padding: 2em;">
+    <section fxLayout="column" fxFlexAlign="center center" fxFlexFill fxLayoutAlign="none stretch">
+      <ng-container *ngFor="let layoutObjectRow of layoutObjectsPositions">
+        <section fxLayout="row" fxFlexAlign="center center" fxLayoutAlign="stretch" fxFlexFill style="text-align: center; margin: auto">
+          <ng-container *ngFor="let layoutObjectColumn of layoutObjectRow">
+            <app-parking-lot #parkingLots *ngIf="isParkingLot(layoutObjectColumn)" [layoutObject]= layoutObjectColumn style="width: 100%;">
+            </app-parking-lot>
+            <app-road *ngIf="isRoad(layoutObjectColumn)" [orientation]="layoutObjectColumn.orientation" style="width: 100%">
+            </app-road>
+            <div [hidden]="layoutObjectColumn !== undefined" style="margin: auto; text-align: center; width:100%; background: rgba(0, 0, 0, 0.8); min-height: 7em;">
+            </div>
+          </ng-container>
+        </section>
+      </ng-container>
+    </section>
+  </section>
+</section>
+
+<!--<section class="dashboard-layout-main" fxLayout="column" fxFlexAlign="center center" fxFlexFill style="margin-bottom: 100px;">-->
+<!--  <section style="padding: 2em;" fxLayout="column" fxFlexFill fxFlexAlign="center center" fxLayoutAlign="non stretch">-->
+<!--    <ng-container *ngFor="let layoutRow of layoutObjectsPositions">-->
+<!--      <section fxLayout="row" fxFlexAlign="center center" fxLayoutAlign="stretch">-->
+<!--        <ng-container *ngFor="let layoutColumn of layoutRow">-->
+<!--          <app-parking-lot [hidden]="!isParkingLot(layoutColumn)" style="width:100%; min-height: 7em; text-overflow: clip;">-->
+<!--          </app-parking-lot>-->
+<!--          <div [hidden]="!isRoad(layoutColumn)" style="text-align: center; width:100%; min-height: 7em; border-left: black thin solid; background: rgba(0,0,255,1);">-->
+<!--          </div>-->
+<!--          <div [hidden]="layoutColumn !== undefined" style="width:100%; background: rgba(0, 0, 0, 0.8); min-height: 7em;">-->
+<!--          </div>-->
+<!--        </ng-container>-->
+<!--      </section>-->
+<!--    </ng-container>-->
+<!--  </section>-->
+<!--</section>-->
+

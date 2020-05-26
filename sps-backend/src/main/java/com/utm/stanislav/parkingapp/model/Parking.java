@@ -1,5 +1,6 @@
 package com.utm.stanislav.parkingapp.model;
 
+import com.utm.stanislav.parkingapp.model.enums.ChargingType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -21,4 +22,8 @@ public class Parking extends GenericEntity {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "parking")
     private List<Level> levels;
+    
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "charging_type")
+    private ChargingType chargingType;
 }

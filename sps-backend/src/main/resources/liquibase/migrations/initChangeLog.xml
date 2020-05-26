@@ -55,6 +55,7 @@
             <column name="address_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
+			<column name="charging_type" type="VARCHAR(255)" />
         </createTable>
     </changeSet>
     <changeSet author="Staseamba (generated)" id="1586642818753-7">

@@ -23,7 +23,7 @@ public class UserValidatorImpl implements UserValidator {
             try {
                 validationChain.validate(user);
             } catch (ValidationException ex) {
-                throw new UserValidationException(ex.getMessage());
+                throw (UserValidationException) ex;
             }
         }
     }

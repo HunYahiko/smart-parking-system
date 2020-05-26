@@ -1,0 +1,109 @@
+//.parking-lot-style {
+//  position: relative;
+//  width: 100%;
+//  height: 100%;
+//  overflow: hidden;
+//  border: thick black;
+//  background: rgba(0, 0, 0, 0.3);
+//
+//  &:before {
+//    content: "";
+//    display: block;
+//    padding-top: 3em;
+//  }
+//}
+
+.parking-lot-layout {
+  min-height: 7em;
+  padding: 0.2em;
+}
+
+.parking-lot-style {
+  border: black 3px;
+  border-style: solid solid none solid;
+}
+
+@mixin parking-lot-main-style {
+  border: black thin;
+}
+
+@mixin car-background-svg {
+  background: url(../../../assets/images/svg/car.svg) no-repeat;
+  background-size: auto;
+}
+
+.up {
+  @include parking-lot-main-style;
+  border-style: solid solid none solid;
+}
+
+.down {
+  @include parking-lot-main-style;
+  border-style: none solid solid solid;
+}
+
+.left {
+  @include parking-lot-main-style;
+  border-style: solid none solid solid;
+}
+
+.right {
+  @include parking-lot-main-style;
+  border-style: solid solid solid none;
+}
+
+.upright {
+  @include parking-lot-main-style;
+  border-style: solid none none solid;
+}
+
+.parking-lot-content {
+  margin: auto;
+}
+
+.left .parking-lot-content {
+  transform: rotate(-90deg);
+  transform-origin: center center;
+}
+
+.right .parking-lot-content {
+  transform: rotate(90deg);
+  transform-origin: center center;
+}
+
+.unresponsive {
+  background: rgba(255, 0, 0, 0.5);
+  .parking-lot-content {
+    .parking-lot-car {
+      display: none;
+    }
+  }
+}
+
+.booked {
+  background: yellowgreen;
+  .parking-lot-content {
+    .parking-lot-car {
+      display: none;
+    }
+  }
+}
+
+.free {
+  background: rgba(0, 255, 0, 0.5);
+  .parking-lot-content {
+    .parking-lot-car {
+      display: none;
+    }
+  }
+}
+
+.occupied {
+
+}
+
+.parking-lot-car-icon {
+  min-height: 3em;
+  min-width: 3em;
+}
+

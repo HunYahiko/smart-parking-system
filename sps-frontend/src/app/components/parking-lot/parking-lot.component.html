@@ -1,0 +1,31 @@
+<!--<div fxLayout="column" fxFlexAlign="center center" style="height:100%;  width:100%; min-height: 7em;">-->
+<!--  <div style="border: black 3px; border-style: solid solid none solid; padding: 0.2em;" fxFlex="100%" >-->
+<!--    LOT01-->
+<!--  </div>-->
+<!--</div>-->
+
+<div fxLayout="row" class="parking-lot-layout">
+  <div fxFlex="100%" fxLayout="row" [ngClass]="{
+  up: up,
+  down: down,
+  left: left,
+  right: right,
+  upright: upright,
+  downright: downright,
+  upleft: upleft,
+  downleft: downleft,
+  unresponsive: unresponsive,
+  booked: booked,
+  free: free,
+  occupied: occupied
+  }">
+    <div fxFlex="100%" fxLayout="column" class="parking-lot-content">
+      <div fxFlex="90%" class="parking-lot-car">
+        <mat-icon svgIcon="sps_car" class="parking-lot-car-icon"></mat-icon>
+      </div>
+      <div fxFlex="10%" class="parking-lot-name">
+        {{parkingLotName}}
+      </div>
+    </div>
+  </div>
+</div>

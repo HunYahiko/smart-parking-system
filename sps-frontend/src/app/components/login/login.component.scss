@@ -1,0 +1,71 @@
+.login-main-layout {
+  height: 100%;
+  background: url(../../../assets/images/underground_parking_background1.jpg) no-repeat;
+  background-size: cover;
+}
+
+.login-main-section {
+  padding: 4%;
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.login-card-title {
+  text-align: center;
+  font-size: xx-large;
+}
+
+.login-card-content {
+  padding-left: 7%;
+  padding-right: 7%;
+  margin-top: 50px;
+}
+
+.login-form-field {
+  font-size: medium;
+}
+
+.login-log-in-button {
+  background-color: #E4CE7A;
+  font-size: larger;
+  margin-top: 15px;
+}
+
+.login-forgot-pass, .login-sing-up {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+::ng-deep {
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #E4CE7A;
+  }
+
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #E4CE7A;
+  }
+
+  .mat-form-field-outline-start, .mat-form-field-outline-end {
+    border-radius: 0 !important;
+  }
+
+  .mat-form-field-appearance-outline.mat-form-field-label.mat-focused {
+    color: #E4CE7A !important;
+  }
+  mat-form-field {
+    .mat-hint, input, ::placeholder, .mat-form-field-label, .mat-focused {
+      color: black;
+    }
+  }
+
+  .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    background-color: #E4CE7A !important;
+  }
+
+  .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #E4CE7A !important;
+  }
+}

@@ -5,16 +5,16 @@
         <insert tableName="sps_coordinate">
             <column name="id" value="763701a2-6279-4d53-a3c0-cefa37afb216"/>
             <column name="version" valueNumeric="0"/>
-            <column name="latitude" valueNumeric="2.4"/>
-            <column name="longitude" valueNumeric="3.5"/>
+            <column name="latitude" valueNumeric="47.016239"/>
+            <column name="longitude" valueNumeric="28.837421"/>
         </insert>
     </changeSet>
 	<changeSet author="Staseamba (generated)" id="1586715024790-1">
         <insert tableName="sps_address">
             <column name="id" value="cb9a9422-856c-41cd-b13d-7f64a59e706a"/>
             <column name="version" valueNumeric="0"/>
-            <column name="street_name" value="Bd.Decebal"/>
-            <column name="street_number" value="139"/>
+            <column name="street_name" value="Strada Bulgară"/>
+            <column name="street_number" value="33/1"/>
             <column name="coordinates_id" value="763701a2-6279-4d53-a3c0-cefa37afb216"/>
         </insert>
     </changeSet>
@@ -22,8 +22,9 @@
         <insert tableName="sps_parking">
             <column name="id" value="d5a9a667-2b6d-4863-bad3-a4f536b51408"/>
             <column name="version" valueNumeric="0"/>
-            <column name="logical_id" value="DECEBAL_PARKING"/>
+            <column name="logical_id" value="ISD Park"/>
             <column name="address_id" value="cb9a9422-856c-41cd-b13d-7f64a59e706a"/>
+			<column name="charging_type" value="ON_BOOKING_CHARGE"/>
         </insert>
     </changeSet>
     <changeSet author="Staseamba (generated)" id="1586715024790-3">

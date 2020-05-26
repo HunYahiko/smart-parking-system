@@ -1,5 +1,6 @@
 package com.utm.stanislav.parkingapp.service.parkinglot;
 
+import com.utm.stanislav.parkingapp.model.Parking;
 import com.utm.stanislav.parkingapp.model.enums.ParkingStatus;
 import com.utm.stanislav.parkingapp.model.Level;
 import com.utm.stanislav.parkingapp.model.ParkingLot;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -34,5 +36,21 @@ public class ParkingLotServiceImpl implements ParkingLotService {
             return Optional.empty();
         }
         return Optional.of(parkingLots.get(0));
+    }
+    
+    @Override
+    @Transactional
+    public List<ParkingLot> getAllParkingLots(Parking parking) {
+        return parkingLotRepository.findAllByParkingId(parking.getId());
+    }
+    
+    @Override
+    public Optional<ParkingLot> getById(UUID parkingLotId) {
+        return parkingLotRepository.findById(parkingLotId);
+    }
+    
+    @Override
+    public List<ParkingLot> getAll() {
+        return parkingLotRepository.findAll();
     }
 }

@@ -1,0 +1,238 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+	<changeSet author="ssanduta" id="02-1">
+		<insert tableName="sps_coordinate">
+            <column name="id" value="763701a2-6279-4d53-a3c0-cefa37afb216"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="latitude" valueNumeric="47.016239"/>
+            <column name="longitude" valueNumeric="28.837421"/>
+        </insert>
+    </changeSet>
+	
+	<changeSet author="ssanduta" id="02-2">
+		<insert tableName="sps_address">
+            <column name="id" value="cb9a9422-856c-41cd-b13d-7f64a59e706a"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="street_name" value="Strada Bulgară"/>
+            <column name="street_number" value="33/1"/>
+            <column name="coordinates_id" value="763701a2-6279-4d53-a3c0-cefa37afb216"/>
+        </insert>
+	</changeSet>
+	
+	<changeSet author="ssanduta" id="02-3">
+		<insert tableName="sps_parking">
+            <column name="id" value="d5a9a667-2b6d-4863-bad3-a4f536b51408"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="logical_id" value="ISD Parking"/>
+            <column name="address_id" value="cb9a9422-856c-41cd-b13d-7f64a59e706a"/>
+			<column name="charging_type" value="FREE_OF_CHARGE"/>
+        </insert>
+	</changeSet>
+	
+	<changeSet author="ssanduta" id="02-4">
+		<insert tableName="sps_level">
+            <column name="id" value="65763041-9844-4941-b257-fb2790638174"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="logical_id" value="GROUND-LEVEL"/>
+            <column name="parking_id" value="d5a9a667-2b6d-4863-bad3-a4f536b51408"/>
+        </insert>
+	</changeSet>
+	
+	<changeSet author="ssanduta" id="02-5">
+		<insert tableName="sps_rpi_bridge">
+            <column name="id" value="185d126e-b758-4b4a-87a7-74051352e37e"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="is_connected" valueBoolean="false"/>
+            <column name="logical_id" value="BRIDGE1-GROUNDLEVEL"/>
+            <column name="session_id"/>
+            <column name="level_id" value="65763041-9844-4941-b257-fb2790638174"/>
+        </insert>
+	</changeSet>
+	
+	<changeSet author="ssanduta" id="02-6">
+		<insert tableName="sps_parking_lot_position">
+			<column name="id" value="b5e88548-3713-4793-b9f9-297084cc4e38"/>
+            <column name="version" valueNumeric="0"/>
+			<column name="x_position" valueNumeric="4"/>
+            <column name="y_position" valueNumeric="0"/>
+		</insert>
+		<insert tableName="sps_parking_lot_position">
+			<column name="id" value="c746379c-7247-4baf-b45b-a45d86fc0977"/>
+            <column name="version" valueNumeric="0"/>
+			<column name="x_position" valueNumeric="3"/>
+            <column name="y_position" valueNumeric="0"/>
+		</insert>
+		<insert tableName="sps_parking_lot_position">
+			<column name="id" value="fbb0b01f-6866-48d3-822a-40963273cca7"/>
+            <column name="version" valueNumeric="0"/>
+			<column name="x_position" valueNumeric="2"/>
+            <column name="y_position" valueNumeric="0"/>
+		</insert>
+		<insert tableName="sps_parking_lot_position">
+			<column name="id" value="ff03aecf-41c1-417a-bb13-aadc6a9f3033"/>
+            <column name="version" valueNumeric="0"/>
+			<column name="x_position" valueNumeric="0"/>
+            <column name="y_position" valueNumeric="3"/>
+		</insert>
+		<insert tableName="sps_parking_lot_position">
+			<column name="id" value="87e83e69-7455-44e5-a5ac-28f974fe1810"/>
+            <column name="version" valueNumeric="0"/>
+			<column name="x_position" valueNumeric="0"/>
+            <column name="y_position" valueNumeric="4"/>
+		</insert>
+		<insert tableName="sps_parking_lot_position">
+			<column name="id" value="ab8ff3a6-1fbd-449b-b896-3e575bbb4055"/>
+            <column name="version" valueNumeric="0"/>
+			<column name="x_position" valueNumeric="0"/>
+            <column name="y_position" valueNumeric="5"/>
+		</insert>
+		<insert tableName="sps_parking_lot_position">
+			<column name="id" value="5f4b5bbe-7dda-413e-af87-d1fc01c2d3f0"/>
+            <column name="version" valueNumeric="0"/>
+			<column name="x_position" valueNumeric="0"/>
+            <column name="y_position" valueNumeric="6"/>
+		</insert>
+		<insert tableName="sps_parking_lot_position">
+			<column name="id" value="19a7f047-b608-440b-87a0-78090f462435"/>
+            <column name="version" valueNumeric="0"/>
+			<column name="x_position" valueNumeric="0"/>
+            <column name="y_position" valueNumeric="7"/>
+		</insert>
+		<insert tableName="sps_parking_lot_position">
+			<column name="id" value="8727c1b5-2f55-4fd1-82f6-6f7b2cb8b709"/>
+            <column name="version" valueNumeric="0"/>
+			<column name="x_position" valueNumeric="0"/>
+            <column name="y_position" valueNumeric="8"/>
+		</insert>
+		<insert tableName="sps_parking_lot_position">
+			<column name="id" value="cc421aab-6212-4899-88cb-83c7161848bd"/>
+            <column name="version" valueNumeric="0"/>
+			<column name="x_position" valueNumeric="0"/>
+            <column name="y_position" valueNumeric="9"/>
+		</insert>
+	</changeSet>
+	
+	<changeSet author="ssanduta" id="02-7">
+		<insert tableName="sps_parking_lot">
+            <column name="id" value="b1906e9a-df8e-48a2-b69d-e7a36b7f397f"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="1"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT1"/>
+            <column name="status" value="FREE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="65763041-9844-4941-b257-fb2790638174"/>
+            <column name="bridge_id" value="185d126e-b758-4b4a-87a7-74051352e37e"/>
+            <column name="position" value="b5e88548-3713-4793-b9f9-297084cc4e38"/>
+        </insert>
+		<insert tableName="sps_parking_lot">
+            <column name="id" value="61fd6163-6605-4e54-91c2-6ad716bfecaf"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="2"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT2"/>
+            <column name="status" value="FREE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="65763041-9844-4941-b257-fb2790638174"/>
+            <column name="bridge_id" value="185d126e-b758-4b4a-87a7-74051352e37e"/>
+            <column name="position" value="c746379c-7247-4baf-b45b-a45d86fc0977"/>
+        </insert>
+		<insert tableName="sps_parking_lot">
+            <column name="id" value="64c9579a-d147-4597-b55d-49cc9862eb78"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="3"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT3"/>
+            <column name="status" value="FREE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="65763041-9844-4941-b257-fb2790638174"/>
+            <column name="bridge_id" value="185d126e-b758-4b4a-87a7-74051352e37e"/>
+            <column name="position" value="fbb0b01f-6866-48d3-822a-40963273cca7"/>
+        </insert>
+        <insert tableName="sps_parking_lot">
+            <column name="id" value="7b2cbcea-2abc-4362-9451-f9e136ced4f8"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="4"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT4"/>
+            <column name="status" value="FREE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="65763041-9844-4941-b257-fb2790638174"/>
+            <column name="bridge_id" value="185d126e-b758-4b4a-87a7-74051352e37e"/>
+            <column name="position" value="ff03aecf-41c1-417a-bb13-aadc6a9f3033"/>
+        </insert>
+		<insert tableName="sps_parking_lot">
+            <column name="id" value="d80d203b-d4bc-40b6-9997-247bb3c293fb"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="5"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT5"/>
+            <column name="status" value="FREE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="65763041-9844-4941-b257-fb2790638174"/>
+            <column name="bridge_id" value="185d126e-b758-4b4a-87a7-74051352e37e"/>
+            <column name="position" value="87e83e69-7455-44e5-a5ac-28f974fe1810"/>
+        </insert>
+        <insert tableName="sps_parking_lot">
+            <column name="id" value="1eefa37b-526c-4995-8b0a-5aab16432c90"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="6"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT6"/>
+            <column name="status" value="FREE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="65763041-9844-4941-b257-fb2790638174"/>
+            <column name="bridge_id" value="185d126e-b758-4b4a-87a7-74051352e37e"/>
+            <column name="position" value="ab8ff3a6-1fbd-449b-b896-3e575bbb4055"/>
+        </insert>
+		<insert tableName="sps_parking_lot">
+            <column name="id" value="c9a42f2c-c636-4ddc-af61-c51af087e690"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="7"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT7"/>
+            <column name="status" value="FREE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="65763041-9844-4941-b257-fb2790638174"/>
+            <column name="bridge_id" value="185d126e-b758-4b4a-87a7-74051352e37e"/>
+            <column name="position" value="5f4b5bbe-7dda-413e-af87-d1fc01c2d3f0"/>
+        </insert>
+        <insert tableName="sps_parking_lot">
+            <column name="id" value="b288a591-4a64-4616-a84e-41577be907b8"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="8"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT8"/>
+            <column name="status" value="FREE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="65763041-9844-4941-b257-fb2790638174"/>
+            <column name="bridge_id" value="185d126e-b758-4b4a-87a7-74051352e37e"/>
+            <column name="position" value="19a7f047-b608-440b-87a0-78090f462435"/>
+        </insert>
+		<insert tableName="sps_parking_lot">
+            <column name="id" value="2d17d04e-f59d-4e54-b747-667524ef39bc"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="9"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT9"/>
+            <column name="status" value="FREE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="65763041-9844-4941-b257-fb2790638174"/>
+            <column name="bridge_id" value="185d126e-b758-4b4a-87a7-74051352e37e"/>
+            <column name="position" value="8727c1b5-2f55-4fd1-82f6-6f7b2cb8b709"/>
+        </insert>
+        <insert tableName="sps_parking_lot">
+            <column name="id" value="aa233dec-a36e-4a1f-8d31-7bca6cd49db2"/>
+            <column name="version" valueNumeric="0"/>
+            <column name="address" valueNumeric="10"/>
+            <column name="failed_response_count" valueNumeric="0"/>
+            <column name="logical_id" value="LOT10"/>
+            <column name="status" value="FREE"/>
+            <column name="user_id"/>
+            <column name="level_id" value="65763041-9844-4941-b257-fb2790638174"/>
+            <column name="bridge_id" value="185d126e-b758-4b4a-87a7-74051352e37e"/>
+            <column name="position" value="cc421aab-6212-4899-88cb-83c7161848bd"/>
+        </insert>
+	</changeSet>
+</databaseChangeLog>

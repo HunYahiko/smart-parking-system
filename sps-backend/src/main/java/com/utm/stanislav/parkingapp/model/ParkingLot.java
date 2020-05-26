@@ -49,9 +49,21 @@ public class ParkingLot extends GenericEntity {
     @Column(name = "failed_response_count")
     private Integer failedResponseCount;
     
+    @OneToOne
+    @JoinColumn(name = "position")
+    private ParkingLotPosition parkingLotPosition;
+    
+    @OneToOne
+    @JoinColumn(name = "layout_object_id", nullable = false)
+    private LayoutObject layoutObject;
+    
     public ParkingLot(String logicalId, Integer address, ParkingStatus parkingStatus) {
         this.logicalId = logicalId;
         this.address = address;
         this.parkingStatus = parkingStatus;
+    }
+    
+    public boolean isFree() {
+        return parkingStatus.equals(ParkingStatus.FREE);
     }
 }

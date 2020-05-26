@@ -1,0 +1,34 @@
+.registration-main-layout {
+  height: 100%;
+  background: url(../../../assets/images/underground_parking_background1.jpg) no-repeat;
+  background-size: cover;
+}
+
+.registration-main-section {
+  padding: 4%;
+}
+
+.registration-card {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.registration-card-title {
+  text-align: center;
+  font-size: xx-large;
+}
+
+.registration-card-content {
+  padding-left: 7%;
+  padding-right: 7%;
+  margin-top: 50px;
+}
+
+.registration-form-field {
+  font-size: medium;
+}
+
+.registration-submit-button {
+  background-color: #E4CE7A;
+  font-size: larger;
+  margin-top: 15px;
+}

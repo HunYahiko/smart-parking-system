@@ -1,5 +1,6 @@
 package com.utm.stanislav.parkingapp.service.user;
 
+import com.utm.stanislav.parkingapp.model.enums.ValidationInputField;
 import com.utm.stanislav.parkingapp.model.exceptions.UserNotFoundException;
 import com.utm.stanislav.parkingapp.model.exceptions.UserValidationException;
 import com.utm.stanislav.parkingapp.model.Role;
@@ -53,7 +54,7 @@ public class UserServiceImpl implements UserService {
     public void updateUsername(String newUsername, String username)
             throws UserValidationException, UserNotFoundException {
         boolean usernameExists = userRepository.existsByUsername(newUsername);
-        if (usernameExists) throw new UserValidationException("New username is taken!");
+        if (usernameExists) throw new UserValidationException("New username is taken!", ValidationInputField.USERNAME);
         User user = this.userRepository.findByUsername(username)
                 .orElseThrow(UserNotFoundException::new);
         user.setUsername(newUsername);

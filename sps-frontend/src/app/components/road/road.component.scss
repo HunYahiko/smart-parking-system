@@ -1,0 +1,26 @@
+.road-main-layout {
+  min-height: 7em;
+}
+
+@mixin road-main-style {
+  border: black thin;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+.up, .down {
+  @include road-main-style;
+  border-style: none solid none solid;
+}
+
+.left, .right {
+  @include road-main-style;
+  border-style: solid none solid none;
+}
+
+.upright {
+  @include road-main-style;
+  border-style: solid none none solid;
+}
+
+

@@ -4,6 +4,7 @@ import com.utm.stanislav.parkingapp.web.interceptor.decorator.MessageHeadersDeco
 import com.utm.stanislav.parkingapp.model.exceptions.HeaderValueNotFoundException;
 import com.utm.stanislav.parkingapp.model.exceptions.RPiBridgeNotFoundException;
 import com.utm.stanislav.parkingapp.service.rpibridge.RPiBridgeService;
+import javafx.util.Pair;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
@@ -29,7 +30,14 @@ public class CustomChannelInterceptor implements ExecutorChannelInterceptor {
                 String bridgeId = messageHeadersDecorator.getBridgeIdHeaderValue();
                 this.rPiBridgeService.setSessionOnBridge(bridgeId, headerAccessor.getSessionId());
             } catch (HeaderValueNotFoundException | RPiBridgeNotFoundException ex) {
-                throw new IllegalArgumentException(ex.getMessage());
+                try {
+                    Pair<String, String> loginPasswordPair = messageHeadersDecorator.getLoginPasswordHeaders();
+                    if (!(loginPasswordPair.getKey().equals("admin") && loginPasswordPair.getValue().equals("admin"))) {
+                        throw new IllegalArgumentException("Wrong login and passcode!");
+                    }
+                } catch (HeaderValueNotFoundException exception) {
+                    throw new IllegalArgumentException(exception.getMessage());
+                }
             }
         }
         return message;

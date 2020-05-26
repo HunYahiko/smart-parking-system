@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class AuthControllerAdvice {
     
     @ExceptionHandler(value = InvalidCredentialsException.class)
-    public ResponseEntity handleInvalidCredentials(InvalidCredentialsException ex) {
+    public ResponseEntity<?> handleInvalidCredentials(InvalidCredentialsException ex) {
         return ResponseEntity.notFound().build();
     }
 }
