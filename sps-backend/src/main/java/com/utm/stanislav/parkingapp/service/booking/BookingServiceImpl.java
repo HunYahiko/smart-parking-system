@@ -75,13 +75,20 @@ public class BookingServiceImpl implements BookingService {
         user.setParkingLot(bookedParkingLot);
         log.info("Successfully finished booking a place for user [{}]", user.getUsername());
         
-        List<FunctionMessage> bookingMessageList = new ArrayList<>();
-        bookingMessageList.add(functionMessageService.generateFor(bookedParkingLot, FunctionCode.BLOCK_LOT));
         String bridgeSessionId = bookedParkingLot.getRPiBridge().getSessionId();
-        brokerMessagingTemplate.convertAndSendToUser(bridgeSessionId,
-                "/messages/function",
-                bookingMessageList,
-                createHeaders(bridgeSessionId));
+        if (bridgeSessionId != null) {
+            log.info("Sending blocking message to bridge with sessionId[{}]", bridgeSessionId);
+            List<FunctionMessage> bookingMessageList = new ArrayList<>();
+            bookingMessageList.add(functionMessageService.generateFor(bookedParkingLot, FunctionCode.BLOCK_LOT));
+            brokerMessagingTemplate.convertAndSendToUser(bridgeSessionId,
+                    "/messages/function",
+                    bookingMessageList,
+                    createHeaders(bridgeSessionId));
+        }
+        else {
+            log.error("Could not send a blocking message to corresponding bridge!");
+        }
+        
     
         LevelDTO levelDTO = new LevelDTO(bookedParkingLot.getLevel().getLogicalId());
         return new ParkingLotDTO(bookedParkingLot.getLogicalId() ,levelDTO);
