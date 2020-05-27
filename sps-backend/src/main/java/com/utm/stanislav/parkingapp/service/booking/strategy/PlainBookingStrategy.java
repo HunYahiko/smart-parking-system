@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Named;
+import java.util.List;
+import java.util.Optional;
 
 @Named
 @RequiredArgsConstructor
@@ -21,8 +23,13 @@ public class PlainBookingStrategy implements BookingStrategy {
     @Override
     @Transactional
     public ParkingLot book(Parking parking) throws BookingException {
-        Level randomLevel = this.levelService.getRandomLevelFrom(parking);
-        return parkingLotService.getFreeRandomParkingLotFrom(randomLevel)
-                .orElseThrow(() -> new BookingException("Failed to find a free parking spot"));
+        List<Level> levels = levelService.getLevelsFromParking(parking);
+        for (Level level: levels) {
+            Optional<ParkingLot> parkingLotOptional = parkingLotService.getFreeRandomParkingLotFrom(level);
+            if (parkingLotOptional.isPresent()) {
+                return parkingLotOptional.get();
+            }
+        }
+        throw new BookingException("Failed to find a free parking spot in parking[" + parking.getLogicalId() + "]");
     }
 }
