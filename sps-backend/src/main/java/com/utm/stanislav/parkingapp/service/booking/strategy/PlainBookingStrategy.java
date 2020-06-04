@@ -23,9 +23,9 @@ public class PlainBookingStrategy implements BookingStrategy {
     @Override
     @Transactional
     public ParkingLot book(Parking parking) throws BookingException {
-        List<Level> levels = levelService.getLevelsFromParking(parking);
+        List<Level> levels = levelService.getAllFrom(parking);
         for (Level level: levels) {
-            Optional<ParkingLot> parkingLotOptional = parkingLotService.getFreeRandomParkingLotFrom(level);
+            Optional<ParkingLot> parkingLotOptional = parkingLotService.getFreeRandomFrom(level);
             if (parkingLotOptional.isPresent()) {
                 return parkingLotOptional.get();
             }

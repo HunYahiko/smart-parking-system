@@ -1,7 +1,7 @@
 package com.utm.stanislav.parkingapp.service.auth;
 
 import com.utm.stanislav.parkingapp.web.controller.response.AuthenticationResponse;
-import com.utm.stanislav.parkingapp.web.dto.LoginDTO;
+import com.utm.stanislav.parkingapp.web.dto.LoginDto;
 import com.utm.stanislav.parkingapp.model.exceptions.InvalidCredentialsException;
 import com.utm.stanislav.parkingapp.model.User;
 import com.utm.stanislav.parkingapp.security.jwt.JwtProvider;
@@ -25,9 +25,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     
     @Override
     @Transactional
-    public AuthenticationResponse authenticate(LoginDTO loginDTO) throws InvalidCredentialsException {
+    public AuthenticationResponse authenticate(LoginDto loginDTO) throws InvalidCredentialsException {
         String loginUsername = loginDTO.getUsername();
-        User user = this.userService.getUserByUsername(loginUsername)
+        User user = this.userService.getByUsername(loginUsername)
                 .orElseThrow(InvalidCredentialsException::new);
         String rawPassword = loginDTO.getPassword();
         String encodedPassword = user.getPassword();

@@ -12,14 +12,15 @@ import java.util.stream.Collectors;
 
 public interface ParkingLotService {
     
-    List<ParkingLot> getAllLotsPairedWith(RPiBridge rPiBridge);
-    Optional<ParkingLot> getFreeRandomParkingLotFrom(Level level);
+    List<ParkingLot> getAllPairedWith(RPiBridge rPiBridge);
+    Optional<ParkingLot> getFreeRandomFrom(Level level);
+    Optional<ParkingLot> getOneFreeRandomFrom(Parking parking);
     default List<ParkingLot> filterByFailCounter(List<ParkingLot> parkingLots) {
         return parkingLots.stream()
                        .filter(parkingLot -> parkingLot.getFailedResponseCount() == 0)
                        .collect(Collectors.toList());
     }
-    List<ParkingLot> getAllParkingLots(Parking parking);
+    List<ParkingLot> getAllFrom(Parking parking);
     Optional<ParkingLot> getById(UUID parkingLotId);
     List<ParkingLot> getAll();
 }

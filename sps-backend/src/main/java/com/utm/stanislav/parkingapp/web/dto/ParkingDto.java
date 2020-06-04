@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Data
 @RequiredArgsConstructor
-public class ParkingDTO {
+public class ParkingDto {
     private final UUID id;
     private final String name;
 }

@@ -6,10 +6,13 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.utm.stanislav.parkingapp.model.enums.FunctionCode;
+import org.springframework.stereotype.Component;
 
+import javax.inject.Named;
 import java.io.IOException;
 import java.util.Optional;
 
+@Component
 public class FunctionCodeJsonDeserializer extends JsonDeserializer<FunctionCode> {
     
     @Override
@@ -17,7 +20,7 @@ public class FunctionCodeJsonDeserializer extends JsonDeserializer<FunctionCode>
         JsonNode jsonNode = p.getCodec().readTree(p);
         
         String jsonFunctionCode = jsonNode.textValue();
-        Optional<FunctionCode> functionCode = FunctionCode.fromString(jsonFunctionCode);
+        Optional<FunctionCode> functionCode = FunctionCode.valueOfByCode(jsonFunctionCode);
         if (functionCode.isPresent()) {
             return functionCode.get();
         }

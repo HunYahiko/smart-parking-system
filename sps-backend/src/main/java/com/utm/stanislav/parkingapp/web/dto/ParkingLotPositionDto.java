@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-public class ParkingLotPositionDTO {
+public class ParkingLotPositionDto {
     
     private final String name;
     

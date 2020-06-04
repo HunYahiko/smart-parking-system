@@ -23,7 +23,7 @@
             <column name="id" value="a97a5887-72a1-44f4-9e3d-4ae495d1db5d"/>
             <column name="version" valueNumeric="1"/>
             <column name="charging_type" value="FREE_OF_CHARGE"/>
-            <column name="logical_id" value="LOT10"/>
+            <column name="logical_id" value="ISD Parking"/>
             <column name="address_id" value="9eedc24f-e214-4e9c-a320-e58a63708933"/>
         </insert>
     </changeSet>

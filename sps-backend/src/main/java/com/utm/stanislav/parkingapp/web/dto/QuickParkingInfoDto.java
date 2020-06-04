@@ -6,9 +6,9 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-public class QuickParkingInfoDTO {
-    private final ParkingDTO parking;
-    private final AddressDTO address;
+public class QuickParkingInfoDto {
+    private final ParkingDto parking;
+    private final AddressDto address;
     private final Long totalParkingLots;
     private final Long freeParkingLots;
     private final ChargingType chargingType;

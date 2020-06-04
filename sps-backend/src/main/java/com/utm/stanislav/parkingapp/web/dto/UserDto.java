@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class UserDto {
     private String firstName;
     private String lastName;
     private String username;
@@ -20,5 +20,5 @@ public class UserDTO {
     private String password;
     
     private String phoneNumber;
-    private List<RoleDTO> roles;
+    private List<RoleDto> roles;
 }

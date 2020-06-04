@@ -1,11 +1,16 @@
 package com.utm.stanislav.parkingapp.model.enums;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Optional;
 
 public enum FunctionCode {
-    
+    @JsonProperty("1")
     STATUS_CHECK(1),
-    BLOCK_LOT(2);
+    @JsonProperty("2")
+    BLOCK_LOT(2),
+    @JsonProperty("3")
+    UNBLOCK_LOT(3);
     
     private int code;
     
@@ -17,7 +22,7 @@ public enum FunctionCode {
         return code;
     }
     
-    public static Optional<FunctionCode> fromString(String jsonFunctionCode) {
+    public static Optional<FunctionCode> valueOfByCode(String jsonFunctionCode) {
         try {
             int code = Integer.parseInt(jsonFunctionCode);
             for (FunctionCode functionCode : FunctionCode.values()) {

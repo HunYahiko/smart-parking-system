@@ -7,8 +7,8 @@ import java.util.List;
 
 @Data
 @RequiredArgsConstructor
-public class ParkingLayoutDTO {
-    private final List<ParkingLotPositionDTO> parkingLotsPositions;
+public class ParkingLayoutDto {
+    private final List<ParkingLotPositionDto> parkingLotsPositions;
     private final Integer rows;
     private final Integer columns;
 }

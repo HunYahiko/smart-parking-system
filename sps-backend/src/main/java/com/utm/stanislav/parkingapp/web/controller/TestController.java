@@ -1,7 +1,7 @@
 package com.utm.stanislav.parkingapp.web.controller;
 
 import com.utm.stanislav.parkingapp.service.functionmessage.FunctionMessageService;
-import com.utm.stanislav.parkingapp.web.dto.ResponseMessageDTO;
+import com.utm.stanislav.parkingapp.web.dto.ResponseMessageDto;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
@@ -26,7 +26,7 @@ public class TestController {
     }
     
     @MessageMapping("/test")
-    public void testMessage(ResponseMessageDTO message, Principal principal) {
+    public void testMessage(ResponseMessageDto message, Principal principal) {
         System.out.println("I received a new message: " + message.toString());
     }
     

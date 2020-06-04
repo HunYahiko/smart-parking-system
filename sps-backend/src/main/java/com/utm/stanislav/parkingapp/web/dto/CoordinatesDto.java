@@ -1,4 +1,4 @@
 package com.utm.stanislav.parkingapp.web.dto;
 
-public class CoordinatesDTO {
+public class CoordinatesDto {
 }

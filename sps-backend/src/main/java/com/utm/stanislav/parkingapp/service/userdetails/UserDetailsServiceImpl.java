@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
-        User user = this.userService.getUserByUsername(username).orElseThrow(
+        User user = this.userService.getByUsername(username).orElseThrow(
                 () -> new UsernameNotFoundException("User with username " +  username + " was not found!"));
         
         return UserPrincipal.create(user);

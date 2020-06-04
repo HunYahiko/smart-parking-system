@@ -28,19 +28,19 @@ public class UserServiceImpl implements UserService {
     
     @Override
     @Transactional
-    public Optional<User> getUserByUsername(String username) {
+    public Optional<User> getByUsername(String username) {
         return this.userRepository.findByUsername(username);
     }
     
     @Override
     @Transactional
-    public List<User> getAllUsers() {
+    public List<User> getAll() {
         return this.userRepository.findAll();
     }
     
     @Override
     @Transactional
-    public void createUser(User user) throws UserValidationException {
+    public void createOne(User user) throws UserValidationException {
         userValidator.validateUser(user);
         user.setId(UUID.randomUUID());
         setBaseRole(user);
@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
     
     @Override
     @Transactional
-    public void deleteUser(String username) {
+    public void deleteOne(String username) {
         this.userRepository.deleteByUsername(username);
     }
     

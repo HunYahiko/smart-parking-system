@@ -9,9 +9,9 @@ import java.util.Optional;
 
 public interface UserService {
     
-    Optional<User> getUserByUsername(String username);
-    List<User> getAllUsers();
-    void createUser(User user) throws UserValidationException;
+    Optional<User> getByUsername(String username);
+    List<User> getAll();
+    void createOne(User user) throws UserValidationException;
     void updateUsername(String newUsername, String username) throws UserValidationException, UserNotFoundException;
-    void deleteUser(String username);
+    void deleteOne(String username);
 }

@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-public class SignUpExceptionDTO {
+public class SignUpExceptionDto {
     private final String exceptionMessage;
     @JsonProperty("inputField")
     private final String field;

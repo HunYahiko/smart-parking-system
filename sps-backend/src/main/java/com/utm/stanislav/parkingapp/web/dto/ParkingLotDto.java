@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ParkingLotDTO {
+public class ParkingLotDto {
     private String name;
     @JsonProperty("level")
-    private LevelDTO levelDTO;
+    private LevelDto levelDTO;
 }

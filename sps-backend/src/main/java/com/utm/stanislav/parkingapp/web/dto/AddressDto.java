@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-public class AddressDTO {
+public class AddressDto {
     private final String streetName;
     private final String streetNumber;
     private final Coordinates coordinates;
