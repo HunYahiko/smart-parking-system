@@ -12,13 +12,8 @@ import java.util.UUID;
 
 public interface BookRequestService {
     
-    ParkingLotDto book(ParkingDto parkingDTO, String username) throws BookingException;
-    
     void createOne(ParkingDto parkingDTO, User user) throws BookingException;
-    
     Optional<BookRequest> getFor(ParkingLot parkingLot);
-    
     void confirmArrival(UUID bookRequestId, User user) throws BookingException;
-    
     void delete(BookRequest bookRequest);
 }

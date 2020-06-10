@@ -22,6 +22,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
     private final JwtProvider jwtProvider;
+    private final BCryptPasswordEncoder passwordEncoder;
     
     @Override
     @Transactional
@@ -32,8 +33,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         String rawPassword = loginDTO.getPassword();
         String encodedPassword = user.getPassword();
         
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        if (passwordEncoder.matches(rawPassword, encodedPassword)) {
+         if (passwordEncoder.matches(rawPassword, encodedPassword)) {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginUsername, rawPassword));
     
@@ -41,8 +41,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             
             String jwtToken = jwtProvider.generateToken(authentication);
             return AuthenticationResponse.from(jwtToken);
-        } else {
-            throw new InvalidCredentialsException();
         }
+        
+        throw new InvalidCredentialsException();
     }
 }

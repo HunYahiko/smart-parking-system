@@ -28,12 +28,6 @@ public class LevelServiceImpl implements LevelService {
     
     @Override
     @Transactional
-    public Optional<Level> getRandomFrom(Parking parking) {
-        return levelRepository.findFirstByParking(parking);
-    }
-    
-    @Override
-    @Transactional
     public List<LevelNameListingDto> getNameListingFrom(Parking parking) {
         List<Level> levels = getAllFrom(parking);
         return levels.stream()

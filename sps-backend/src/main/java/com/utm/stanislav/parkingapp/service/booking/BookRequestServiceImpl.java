@@ -43,72 +43,11 @@ import java.util.UUID;
 @Slf4j
 public class BookRequestServiceImpl implements BookRequestService {
     
-    private final ApplicationContext context;
     private final ParkingService parkingService;
-    private final UserService userService;
-    private final BookingStrategySelectorMBean bookingStrategySelector;
     private final SimpMessagingTemplate brokerMessagingTemplate;
     private final FunctionMessageService functionMessageService;
     private final SpaceFinderStrategyResolver spaceFinderStrategyResolver;
     private final BookRequestRepository bookRequestRepository;
-    
-    @Override
-    @Transactional
-    @Retryable(
-            value = OptimisticLockException.class,
-            maxAttempts = 5,
-            backoff = @Backoff(delay = 2000)
-    )
-    public ParkingLotDto book(ParkingDto parkingDTO, String username) throws BookingException {
-        log.info("Booking a parking lot for user [{}]", username.toUpperCase());
-        Parking parking = this.parkingService.getParkingById(parkingDTO.getId())
-                .orElseThrow(() -> new BookingException(
-                        "Parking with name " + parkingDTO.getName() + " could not be found!"));
-        
-        BookingStrategy bookingStrategy = fetchStrategyOrReturnDefault();
-        ParkingLot bookedParkingLot = bookingStrategy.book(parking);
-        log.info("Found suitable parking lot [{}] at level [{}]",
-                bookedParkingLot.getLogicalId(), bookedParkingLot.getLevel().getLogicalId());
-        
-        User user = this.userService.getByUsername(username)
-                .orElseThrow(() -> new BookingException(
-                        "User requesting booking was not found!"));
-        
-        bookedParkingLot.setParkingStatus(ParkingStatus.BOOKED);
-        bookedParkingLot.setBookedBy(user);
-        user.setParkingLot(bookedParkingLot);
-        log.info("Successfully finished booking a place for user [{}]", user.getUsername());
-        
-        String bridgeSessionId = bookedParkingLot.getRPiBridge().getSessionId();
-        if (bridgeSessionId != null) {
-            log.info("Sending blocking message to bridge with sessionId[{}]", bridgeSessionId);
-            List<FunctionMessage> bookingMessageList = new ArrayList<>();
-            bookingMessageList.add(functionMessageService.generateFor(bookedParkingLot, FunctionCode.BLOCK_LOT));
-            brokerMessagingTemplate.convertAndSendToUser(bridgeSessionId,
-                    "/messages/function",
-                    bookingMessageList,
-                    createHeaders(bridgeSessionId));
-        }
-        else {
-            log.error("Could not send a blocking message to corresponding bridge!");
-        }
-        
-    
-        LevelDto levelDTO = new LevelDto();
-        return new ParkingLotDto(bookedParkingLot.getLogicalId() ,levelDTO);
-    }
-    
-    private BookingStrategy fetchStrategyOrReturnDefault() {
-        String strategy = this.bookingStrategySelector.getBookingStrategy();
-        BookingStrategy bookingStrategy;
-        try {
-            bookingStrategy = context.getBean(strategy, BookingStrategy.class);
-        } catch (NoSuchBeanDefinitionException ex) {
-            String defaultStrategy = this.bookingStrategySelector.getDefaultBookingStrategy();
-            bookingStrategy = context.getBean(defaultStrategy, BookingStrategy.class);
-        }
-        return bookingStrategy;
-    }
     
     
     @Override
@@ -133,7 +72,7 @@ public class BookRequestServiceImpl implements BookRequestService {
         BookRequest bookRequest = new BookRequest(
                 parkingLot, user, 0, BookRequestStatus.AWAITING_CONFIRMATION
         );
-        bookRequest = bookRequestRepository.save(bookRequest);
+        bookRequestRepository.save(bookRequest);
         log.info("Finished creating a book request for user {}", user.getUsername());
     
     }

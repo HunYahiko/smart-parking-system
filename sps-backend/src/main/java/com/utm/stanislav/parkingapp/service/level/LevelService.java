@@ -10,6 +10,5 @@ import java.util.Optional;
 public interface LevelService {
     
     List<Level> getAllFrom(Parking parking);
-    Optional<Level> getRandomFrom(Parking parking);
     List<LevelNameListingDto> getNameListingFrom(Parking parking);
 }

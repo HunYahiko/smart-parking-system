@@ -33,9 +33,15 @@ import javax.inject.Named;
 @RequiredArgsConstructor
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     
-    private final UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
     private final RequestAuthenticationEntryPoint authenticationEntryPoint;
     private final JwtProvider jwtProvider;
+    
+    @Inject
+    public void setUserDetailsService(@Named("customUserDetailsService") UserDetailsServiceImpl userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+    
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -72,7 +78,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
     
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
     

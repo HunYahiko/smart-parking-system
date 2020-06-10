@@ -28,7 +28,7 @@ public class CustomChannelInterceptor implements ExecutorChannelInterceptor {
             MessageHeadersDecorator messageHeadersDecorator = new MessageHeadersDecorator(message.getHeaders());
             try {
                 String bridgeId = messageHeadersDecorator.getBridgeIdHeaderValue();
-                this.rPiBridgeService.setSessionOnBridge(bridgeId, headerAccessor.getSessionId());
+                this.rPiBridgeService.setSessionIdOn(bridgeId, headerAccessor.getSessionId());
             } catch (HeaderValueNotFoundException | RPiBridgeNotFoundException ex) {
                 try {
                     Pair<String, String> loginPasswordPair = messageHeadersDecorator.getLoginPasswordHeaders();

@@ -24,7 +24,7 @@ public class BridgeEventListener implements ApplicationListener<SessionDisconnec
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
         String sessionId = headerAccessor.getSessionId();
         try {
-            this.rPiBridgeService.removeSessionFromBridge(sessionId);
+            this.rPiBridgeService.removeSessionIdFrom(sessionId);
         } catch (RPiBridgeNotFoundException ex) {
             System.out.println("Could not find bridge by session!");
         }

@@ -18,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,9 +51,9 @@ public class UserController {
     @PreAuthorize("hasRole('USER')")
     @Operation(summary = "Update user", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<?> updateUsername(@RequestParam(name = "username") String newUsername,
-                                         Authentication authentication)
+                                            Principal principal)
             throws UserValidationException, UserNotFoundException {
-        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        UserPrincipal userPrincipal = (UserPrincipal) principal;
         this.userService.updateUsername(newUsername, userPrincipal.getUsername());
         return ResponseEntity.noContent().build();
     }

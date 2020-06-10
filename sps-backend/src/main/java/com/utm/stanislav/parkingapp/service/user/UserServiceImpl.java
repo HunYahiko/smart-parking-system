@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleService roleService;
     private final UserValidator userValidator;
+    private final BCryptPasswordEncoder passwordEncoder;
     
     @Override
     @Transactional
@@ -42,9 +43,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void createOne(User user) throws UserValidationException {
         userValidator.validateUser(user);
-        user.setId(UUID.randomUUID());
         setBaseRole(user);
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         this.userRepository.save(user);
     }

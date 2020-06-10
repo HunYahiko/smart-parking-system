@@ -19,7 +19,12 @@ import javax.inject.Named;
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
     
-    private final UserService userService;
+    private UserService userService;
+    
+    @Inject
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
     
     @Override
     @Transactional

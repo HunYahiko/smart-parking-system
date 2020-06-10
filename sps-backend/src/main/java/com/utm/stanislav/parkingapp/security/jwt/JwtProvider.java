@@ -30,6 +30,15 @@ public class JwtProvider {
                 .compact();
     }
     
+    public String generateToken(String username) {
+        return Jwts.builder()
+                   .setSubject(username)
+                   .setIssuedAt(new Date())
+                   .setExpiration(new Date((new Date()).getTime() + jwtExpirationTime * 1000))
+                   .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                   .compact();
+    }
+    
     public String getUsernameFromJwt(String token) {
         return Jwts.parser()
                 .setSigningKey(jwtSecret)

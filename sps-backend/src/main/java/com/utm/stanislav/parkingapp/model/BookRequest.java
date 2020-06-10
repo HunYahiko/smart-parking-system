@@ -30,4 +30,8 @@ public class BookRequest extends GenericEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private BookRequestStatus bookRequestStatus;
+    
+    public BookRequest(User user) {
+        this.user = user;
+    }
 }
