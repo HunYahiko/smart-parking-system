@@ -1,7 +1,10 @@
 package com.utm.stanislav.parkingapp.web.controller.booking;
 
+import com.utm.stanislav.parkingapp.model.BookRequest;
 import com.utm.stanislav.parkingapp.model.User;
+import com.utm.stanislav.parkingapp.model.exceptions.UserNotFoundException;
 import com.utm.stanislav.parkingapp.service.user.UserService;
+import com.utm.stanislav.parkingapp.web.dto.BookRequestDto;
 import com.utm.stanislav.parkingapp.web.dto.ParkingDto;
 import com.utm.stanislav.parkingapp.web.dto.ParkingLotDto;
 import com.utm.stanislav.parkingapp.model.exceptions.BookingException;
@@ -18,6 +21,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -50,6 +54,16 @@ public class BookingController {
                 .orElseThrow(() -> new BookingException("Could not resolve user that tries to confirm!"));
         bookRequestService.confirmArrival(bookRequestId, user);
         return ResponseEntity.ok().build();
+    }
+    
+    @GetMapping("/")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<List<BookRequestDto>> getAllForUser() throws UserNotFoundException {
+        String username = fetchUsername();
+        User user = userService.getByUsername(username)
+                            .orElseThrow(UserNotFoundException::new);
+        List<BookRequestDto> bookRequestDtoList = bookRequestService.getByUser(user);
+        return ResponseEntity.ok(bookRequestDtoList);
     }
     
     private String fetchUsername() {

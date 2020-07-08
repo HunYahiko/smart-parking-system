@@ -27,7 +27,7 @@ public class StatusCheckJob {
     private final SimpMessagingTemplate brokerMessagingTemplate;
     
     
-    @Scheduled(fixedDelay = 2000, initialDelay = 4000)
+    @Scheduled(fixedDelay = 4000, initialDelay = 4000)
     @Transactional
     public void scheduleStatusCheckJob() {
         StopWatch stopWatch = new StopWatch("StatusCheckJobExecutionTime");
