@@ -23,6 +23,9 @@ import { RoadComponent } from './components/road/road.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import { LevelLayoutComponent } from './components/level-layout/level-layout.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import {MatListModule} from '@angular/material/list';
     DashboardComponent,
     NavigationComponent,
     ParkingLotComponent,
-    RoadComponent
+    RoadComponent,
+    LevelLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,9 @@ import {MatListModule} from '@angular/material/list';
     ReactiveFormsModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule,
+    MatAutocompleteModule
   ],
   providers: [
     {

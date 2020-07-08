@@ -6,23 +6,17 @@ import com.utm.stanislav.parkingapp.model.enums.FunctionCode;
 import com.utm.stanislav.parkingapp.model.exceptions.SpaceFinderException;
 import com.utm.stanislav.parkingapp.model.exceptions.StrategyResolverException;
 import com.utm.stanislav.parkingapp.repository.BookRequestRepository;
-import com.utm.stanislav.parkingapp.service.booking.strategy.BookingStrategy;
 import com.utm.stanislav.parkingapp.service.spacefinder.helper.SpaceFinderStrategyHolder;
 import com.utm.stanislav.parkingapp.service.spacefinder.helper.SpaceFinderStrategyResolver;
 import com.utm.stanislav.parkingapp.service.spacefinder.helper.SpaceFinderStrategyType;
 import com.utm.stanislav.parkingapp.service.spacefinder.strategy.SpaceFinderStrategy;
 import com.utm.stanislav.parkingapp.service.functionmessage.FunctionMessageService;
-import com.utm.stanislav.parkingapp.web.dto.LevelDto;
+import com.utm.stanislav.parkingapp.web.dto.BookRequestDto;
 import com.utm.stanislav.parkingapp.web.dto.ParkingDto;
-import com.utm.stanislav.parkingapp.web.dto.ParkingLotDto;
-import com.utm.stanislav.parkingapp.model.enums.ParkingStatus;
 import com.utm.stanislav.parkingapp.model.exceptions.BookingException;
 import com.utm.stanislav.parkingapp.service.parking.ParkingService;
-import com.utm.stanislav.parkingapp.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
-import org.springframework.context.ApplicationContext;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.stomp.StompCommand;
@@ -159,5 +153,23 @@ public class BookRequestServiceImpl implements BookRequestService {
     @Override
     public void delete(BookRequest bookRequest) {
         bookRequestRepository.delete(bookRequest);
+    }
+    
+    @Override
+    public List<BookRequestDto> getByUser(User user) {
+        List<BookRequest> bookRequests = bookRequestRepository.findAllByUser(user);
+        List<BookRequestDto> bookRequestDtoList = new ArrayList<>();
+        for (BookRequest bookRequest : bookRequests) {
+            Parking parking = bookRequest.getParkingLot().getLevel().getParking();
+            ParkingLot parkingLot = bookRequest.getParkingLot();
+            BookRequestDto bookRequestDto = new BookRequestDto(
+                    bookRequest.getId(),
+                    parking.getLogicalId(),
+                    parkingLot.getLogicalId(),
+                    bookRequest.getBookRequestStatus()
+            );
+            bookRequestDtoList.add(bookRequestDto);
+        }
+        return bookRequestDtoList;
     }
 }
