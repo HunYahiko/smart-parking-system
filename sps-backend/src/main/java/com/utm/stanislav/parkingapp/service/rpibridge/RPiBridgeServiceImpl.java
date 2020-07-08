@@ -17,37 +17,32 @@ public class RPiBridgeServiceImpl implements RPiBridgeService {
     
     @Override
     @Transactional
-    public Optional<RPiBridge> getBridgeByLogicalId(String logicalId) {
+    public Optional<RPiBridge> getByLogicalId(String logicalId) {
         return this.rPiBridgeRepository.findByLogicalId(logicalId);
     }
     
     @Override
     @Transactional
-    public Optional<RPiBridge> getBridgeBySession(String sessionId) {
+    public Optional<RPiBridge> getBySessionId(String sessionId) {
         return this.rPiBridgeRepository.findBySessionId(sessionId);
     }
     
     @Override
     @Transactional
-    public void setSessionOnBridge(String logicalId, String sessionId) throws RPiBridgeNotFoundException {
-        Optional<RPiBridge> rPiBridge = this.getBridgeByLogicalId(logicalId);
-        if (rPiBridge.isPresent()) {
-            rPiBridge.get().setSessionId(sessionId);
-            rPiBridge.get().setIsConnected(Boolean.TRUE);
-        } else {
-            throw new RPiBridgeNotFoundException("Could not find rPiBridge by provided logicalId!");
-        }
+    public void setSessionIdOn(String logicalId, String sessionId) throws RPiBridgeNotFoundException {
+        RPiBridge rPiBridge = getByLogicalId(logicalId)
+                .orElseThrow(() -> new RPiBridgeNotFoundException("Could not find rPiBridge by provided logicalId!"));
+        rPiBridge.setSessionId(sessionId);
+        rPiBridge.setIsConnected(Boolean.TRUE);
     }
     
     @Override
     @Transactional
-    public void removeSessionFromBridge(String sessionId) throws RPiBridgeNotFoundException {
-        Optional<RPiBridge> rPiBridge = this.getBridgeBySession(sessionId);
-        if (rPiBridge.isPresent()) {
-            rPiBridge.get().setSessionId(null);
-            rPiBridge.get().setIsConnected(Boolean.FALSE);
-        } else {
-            throw new RPiBridgeNotFoundException("Could not find rPiBridge by provided session!");
-        }
+    public void removeSessionIdFrom(String sessionId) throws RPiBridgeNotFoundException {
+        RPiBridge rPiBridge = getBySessionId(sessionId)
+                .orElseThrow(() -> new RPiBridgeNotFoundException("Could not find rPiBridge by provided session!"));
+        rPiBridge.setSessionId(null);
+        rPiBridge.setIsConnected(Boolean.FALSE);
+
     }
 }

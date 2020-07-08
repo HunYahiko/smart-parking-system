@@ -6,10 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.utm.stanislav.parkingapp.configuration.deserializer.ParkingStatusJsonDeserializer;
 import com.utm.stanislav.parkingapp.configuration.serializer.ParkingStatusJsonSerializer;
 import com.utm.stanislav.parkingapp.model.enums.ParkingStatus;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -17,7 +14,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "sps_parking_lot")
 @Data
-@RequiredArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 public class ParkingLot extends GenericEntity {
     

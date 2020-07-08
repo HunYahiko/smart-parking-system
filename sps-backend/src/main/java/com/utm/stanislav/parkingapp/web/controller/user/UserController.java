@@ -1,6 +1,8 @@
 package com.utm.stanislav.parkingapp.web.controller.user;
 
-import com.utm.stanislav.parkingapp.web.dto.UserDTO;
+import com.utm.stanislav.parkingapp.model.mapper.UserDtoToEntityMapper;
+import com.utm.stanislav.parkingapp.model.mapper.UserToDtoMapper;
+import com.utm.stanislav.parkingapp.web.dto.UserDto;
 import com.utm.stanislav.parkingapp.model.exceptions.UserNotFoundException;
 import com.utm.stanislav.parkingapp.model.exceptions.UserValidationException;
 import com.utm.stanislav.parkingapp.model.User;
@@ -16,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,23 +29,21 @@ import java.util.stream.Collectors;
 public class UserController {
     
     private final UserService userService;
-    private final ModelMapper modelMapper;
+    private final UserDtoToEntityMapper dtoToEntityMapper;
+    private final UserToDtoMapper userToDtoMapper;
     
     @GetMapping
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @Operation(summary = "Get all users", security = @SecurityRequirement(name = "bearerAuth"))
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<UserDTO> users = userService.getAllUsers()
-                                      .stream()
-                                      .map(this::convertToDTO)
-                                      .collect(Collectors.toList());
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        List<UserDto> users = userToDtoMapper.mapList(userService.getAll());
         return ResponseEntity.ok(users);
     }
     
     @PostMapping
-    public ResponseEntity<?> createUser(@RequestBody UserDTO userDTO) throws UserValidationException {
-        User user = convertToEntity(userDTO);
-        this.userService.createUser(user);
+    public ResponseEntity<?> createUser(@RequestBody UserDto userDTO) throws UserValidationException {
+        User user = dtoToEntityMapper.map(userDTO);
+        this.userService.createOne(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
     
@@ -50,9 +51,9 @@ public class UserController {
     @PreAuthorize("hasRole('USER')")
     @Operation(summary = "Update user", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<?> updateUsername(@RequestParam(name = "username") String newUsername,
-                                         Authentication authentication)
+                                            Principal principal)
             throws UserValidationException, UserNotFoundException {
-        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        UserPrincipal userPrincipal = (UserPrincipal) principal;
         this.userService.updateUsername(newUsername, userPrincipal.getUsername());
         return ResponseEntity.noContent().build();
     }
@@ -67,16 +68,8 @@ public class UserController {
             3. If admin tries to delete another user, allow.
             4. If user tries to delete himself, allow.
          */
-        this.userService.deleteUser(username);
+        this.userService.deleteOne(username);
         return ResponseEntity.noContent().build();
-    }
-    
-    private UserDTO convertToDTO(User user) {
-        return modelMapper.map(user, UserDTO.class);
-    }
-    
-    private User convertToEntity(UserDTO userDTO) {
-        return modelMapper.map(userDTO, User.class);
     }
     
 }

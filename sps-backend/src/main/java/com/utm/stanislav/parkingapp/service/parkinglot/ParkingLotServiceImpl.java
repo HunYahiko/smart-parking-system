@@ -22,13 +22,13 @@ public class ParkingLotServiceImpl implements ParkingLotService {
     
     @Override
     @Transactional
-    public List<ParkingLot> getAllLotsPairedWith(RPiBridge rPiBridge) {
+    public List<ParkingLot> getAllPairedWith(RPiBridge rPiBridge) {
         return this.parkingLotRepository.findAllByrPiBridge(rPiBridge);
     }
     
     @Override
     @Transactional
-    public Optional<ParkingLot> getFreeRandomParkingLotFrom(Level level) {
+    public Optional<ParkingLot> getFreeRandomFrom(Level level) {
         List<ParkingLot> parkingLots =
                 this.parkingLotRepository.findByLevelAndParkingStatus(level, ParkingStatus.FREE);
         parkingLots = this.filterByFailCounter(parkingLots);
@@ -40,7 +40,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
     
     @Override
     @Transactional
-    public List<ParkingLot> getAllParkingLots(Parking parking) {
+    public List<ParkingLot> getAllFrom(Parking parking) {
         return parkingLotRepository.findAllByParkingId(parking.getId());
     }
     
@@ -52,5 +52,10 @@ public class ParkingLotServiceImpl implements ParkingLotService {
     @Override
     public List<ParkingLot> getAll() {
         return parkingLotRepository.findAll();
+    }
+    
+    @Override
+    public Optional<ParkingLot> getOneFreeRandomFrom(Parking parking) {
+        return parkingLotRepository.findOneFreeRandomFrom(parking.getId());
     }
 }

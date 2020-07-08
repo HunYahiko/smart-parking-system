@@ -1,7 +1,9 @@
 package com.utm.stanislav.parkingapp.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.List;
 @Entity
 @Table(name = "sps_rpi_bridge")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class RPiBridge extends GenericEntity{
     
     @Column(name = "logical_id")
@@ -28,8 +32,6 @@ public class RPiBridge extends GenericEntity{
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "rPiBridge")
     List<ParkingLot> parkingLots;
-    
-    public RPiBridge() {}
     
     public RPiBridge(String logicalId, String sessionId, Boolean isConnected) {
         this.logicalId = logicalId;

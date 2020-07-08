@@ -19,13 +19,18 @@ import javax.inject.Named;
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
     
-    private final UserService userService;
+    private UserService userService;
+    
+    @Inject
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
     
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
-        User user = this.userService.getUserByUsername(username).orElseThrow(
+        User user = this.userService.getByUsername(username).orElseThrow(
                 () -> new UsernameNotFoundException("User with username " +  username + " was not found!"));
         
         return UserPrincipal.create(user);

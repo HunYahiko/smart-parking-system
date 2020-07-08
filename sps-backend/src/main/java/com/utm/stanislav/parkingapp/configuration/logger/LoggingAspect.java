@@ -16,17 +16,19 @@ public class LoggingAspect {
     private static final String CONTROLLER_CLASS_MDC_KEY = "controller";
     
     @Pointcut("within(@org.springframework.web.bind.annotation.RestController *)")
+    public void anyRestControllerAction() {}
+    
+    @Pointcut("within(@org.springframework.stereotype.Controller *)")
     public void anyControllerAction() {}
     
-    @Before("anyControllerAction()")
-    public void beforeAnyController(JoinPoint joinPoint) {
+    @Before("anyRestControllerAction()")
+    public void beforeAnyRestController(JoinPoint joinPoint) {
         String targetClass = joinPoint.getSignature().getDeclaringType().getSimpleName();
         MDC.put(CONTROLLER_CLASS_MDC_KEY, targetClass);
-        System.out.println("BeforeAnyController(): class invoked - " + targetClass);
     }
     
-    @After("anyControllerAction()")
-    public void afterAnyController(JoinPoint joinPoint) {
+    @After("anyRestControllerAction()")
+    public void afterAnyRestController(JoinPoint joinPoint) {
         MDC.remove(CONTROLLER_CLASS_MDC_KEY);
     }
 }

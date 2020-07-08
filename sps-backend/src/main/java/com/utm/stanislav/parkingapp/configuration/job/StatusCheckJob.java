@@ -49,12 +49,12 @@ public class StatusCheckJob {
         List<RPiBridge> rPiBridges = this.repository.findAll();
         for (RPiBridge bridge : rPiBridges) {
             if (bridge.getIsConnected()) {
-                System.out.print("Processing bridge " + bridge.getLogicalId() + " with ");
+                //System.out.print("Processing bridge " + bridge.getLogicalId() + " with ");
                 List<FunctionMessage> functionMessages = functionMessageService.generateFor(
                         bridge, FunctionCode.STATUS_CHECK);
     
-                System.out.println(functionMessages.size() + " parking lots");
-                System.out.println("Bridge session " + bridge.getSessionId());
+//                System.out.println(functionMessages.size() + " parking lots");
+//                System.out.println("Bridge session " + bridge.getSessionId());
 
                 this.brokerMessagingTemplate.convertAndSendToUser(bridge.getSessionId(),
                         "/messages/function",

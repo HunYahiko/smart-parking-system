@@ -164,6 +164,20 @@
             </column>
         </createTable>
     </changeSet>
+	<changeSet author="ssanduta" id="1590177960358-29">
+		<createTable tableName="sps_book_request">
+			<column name="id" type="UUID">
+				<constraints primaryKey="true" primaryKeyName="sps_booking_request_pkey"/>
+			</column>
+			<column name="version" type="BIGINT"/>
+			<column name="parking_lot_id" type="UUID">
+				<constraints nullable="false"/>
+			</column>
+			<column name="user_id" type="UUID"/>
+			<column name="failed_attempts" type="INTEGER"/>
+			<column name="status" type="VARCHAR(255)"/>
+		</createTable>
+	</changeSet>
     <changeSet author="Staseamba (generated)" id="1590177960358-14">
         <addUniqueConstraint columnNames="email" constraintName="uk_9iwghr7v8umao9pv5rhu2e2d6" tableName="sps_user"/>
     </changeSet>
@@ -173,6 +187,9 @@
     <changeSet author="Staseamba (generated)" id="1590177960358-16">
         <addUniqueConstraint columnNames="user_id" constraintName="uk_shrawtc44kp80kp0u5w60x07k" tableName="sps_parking_lot"/>
     </changeSet>
+	<changeSet author="ssanduta" id="1590177960358-30">
+		<addUniqueConstraint columnNames="parking_lot_id" constraintName="uk_h2c9kvlv64k2w0u73nk160pcb" tableName="sps_book_request"/>
+	</changeSet>
     <changeSet author="Staseamba (generated)" id="1590177960358-17">
         <addForeignKeyConstraint baseColumnNames="bridge_id" baseTableName="sps_parking_lot" constraintName="fk2fwftemj60hvr32q8ipi4ksuu" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="sps_rpi_bridge" validate="true"/>
     </changeSet>
@@ -212,4 +229,10 @@
     <changeSet author="Staseamba (generated)" id="1590177960358-28">
         <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="sps_parking" constraintName="fkr62o6b44rfuec2ccl5kn044r5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="sps_address" validate="true"/>
     </changeSet>
+	<changeSet author="ssanduta" id="1590177960358-31">
+		<addForeignKeyConstraint baseColumnNames="parking_lot_id" baseTableName="sps_book_request" constraintName="fkr67o6b4rsvuec2ccl5kn044r5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="sps_parking_lot" validate="true"/>
+	</changeSet>
+	<changeSet author="ssanduta" id="1590177960358-32">
+		<addForeignKeyConstraint baseColumnNames="user_id" baseTableName="sps_book_request" constraintName="fkr67o6b4rstuec2csl5kn654r5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="sps_user" validate="true"/>
+	</changeSet>
 </databaseChangeLog>

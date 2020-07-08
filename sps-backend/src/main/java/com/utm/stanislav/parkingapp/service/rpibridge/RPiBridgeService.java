@@ -7,8 +7,8 @@ import java.util.Optional;
 
 public interface RPiBridgeService {
     
-    Optional<RPiBridge> getBridgeByLogicalId(String logicalId);
-    Optional<RPiBridge> getBridgeBySession(String sessionId);
-    void setSessionOnBridge(String logicalId, String sessionId) throws RPiBridgeNotFoundException;
-    void removeSessionFromBridge(String sessionId) throws RPiBridgeNotFoundException;
+    Optional<RPiBridge> getByLogicalId(String logicalId);
+    Optional<RPiBridge> getBySessionId(String sessionId);
+    void setSessionIdOn(String logicalId, String sessionId) throws RPiBridgeNotFoundException;
+    void removeSessionIdFrom(String sessionId) throws RPiBridgeNotFoundException;
 }

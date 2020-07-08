@@ -4,16 +4,14 @@ import com.utm.stanislav.parkingapp.model.Address;
 import com.utm.stanislav.parkingapp.model.Parking;
 import com.utm.stanislav.parkingapp.model.ParkingLot;
 import com.utm.stanislav.parkingapp.model.enums.ChargingType;
-import com.utm.stanislav.parkingapp.model.enums.ParkingStatus;
 import com.utm.stanislav.parkingapp.model.exceptions.ParkingNotFoundException;
 import com.utm.stanislav.parkingapp.repository.ParkingRepository;
 import com.utm.stanislav.parkingapp.service.parkinglot.ParkingLotService;
-import com.utm.stanislav.parkingapp.web.dto.AddressDTO;
-import com.utm.stanislav.parkingapp.web.dto.ParkingDTO;
-import com.utm.stanislav.parkingapp.web.dto.ParkingLocationDTO;
-import com.utm.stanislav.parkingapp.web.dto.QuickParkingInfoDTO;
+import com.utm.stanislav.parkingapp.web.dto.AddressDto;
+import com.utm.stanislav.parkingapp.web.dto.ParkingDto;
+import com.utm.stanislav.parkingapp.web.dto.ParkingLocationDto;
+import com.utm.stanislav.parkingapp.web.dto.QuickParkingInfoDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,41 +39,41 @@ public class ParkingServiceImpl implements ParkingService {
     
     @Override
     @Transactional
-    public List<ParkingLocationDTO> fetchParkingsLocations() {
+    public List<ParkingLocationDto> fetchParkingsLocations() {
         List<Parking> parkings = parkingRepository.findAll();
         return parkings.stream()
                 .map(this::mapParking)
                 .collect(Collectors.toList());
     }
     
-    private ParkingLocationDTO mapParking(Parking parking) {
-        ParkingDTO parkingDTO = new ParkingDTO(parking.getId(), parking.getLogicalId());
+    private ParkingLocationDto mapParking(Parking parking) {
+        ParkingDto parkingDTO = new ParkingDto(parking.getId(), parking.getLogicalId());
         Address parkingAddress = parking.getAddress();
-        AddressDTO addressDTO = new AddressDTO(parkingAddress.getStreetName(),
+        AddressDto addressDTO = new AddressDto(parkingAddress.getStreetName(),
                                                 parkingAddress.getStreetNumber(),
                                                 parkingAddress.getCoordinates());
-        return new ParkingLocationDTO(parkingDTO, addressDTO, parking.getChargingType());
+        return new ParkingLocationDto(parkingDTO, addressDTO, parking.getChargingType());
     }
     
     @Override
     @Transactional
-    public QuickParkingInfoDTO getQuickParkingInfo(UUID parkingId) throws ParkingNotFoundException{
+    public QuickParkingInfoDto getQuickParkingInfo(UUID parkingId) throws ParkingNotFoundException{
         Parking parking = parkingRepository.findById(parkingId)
                                                     .orElseThrow(ParkingNotFoundException::new);
         
-        List<ParkingLot> parkingLots = parkingLotService.getAllParkingLots(parking);
+        List<ParkingLot> parkingLots = parkingLotService.getAllFrom(parking);
         Long freeParkingLots = parkingLots.stream().parallel()
                                                 .filter(ParkingLot::isFree)
                                                 .count();
         Long totalParkingLots = (long) parkingLots.size();
         ChargingType parkingChargingType = parking.getChargingType();
         
-        ParkingDTO parkingDTO = new ParkingDTO(parkingId, parking.getLogicalId());
+        ParkingDto parkingDTO = new ParkingDto(parkingId, parking.getLogicalId());
         
         Address address = parking.getAddress();
-        AddressDTO addressDTO = new AddressDTO(address.getStreetName(), address.getStreetNumber(), address.getCoordinates());
+        AddressDto addressDTO = new AddressDto(address.getStreetName(), address.getStreetNumber(), address.getCoordinates());
         
-        return new QuickParkingInfoDTO(parkingDTO, addressDTO, totalParkingLots, freeParkingLots, parkingChargingType);
+        return new QuickParkingInfoDto(parkingDTO, addressDTO, totalParkingLots, freeParkingLots, parkingChargingType);
         
     }
 }
