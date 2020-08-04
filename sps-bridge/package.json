@@ -1,0 +1,39 @@
+{
+  "name": "rpibridge",
+  "version": "1.0.0",
+  "description": "Communication bridge between server and parking lots using RPi as a bridge",
+  "main": "app.ts",
+  "dependencies": {
+    "@stomp/rx-stomp": "^0.3.4",
+    "@types/better-queue": "^3.8.2",
+    "@types/kue": "^0.11.13",
+    "@types/node": "^13.1.5",
+    "@types/serialport": "^8.0.0",
+    "@types/sockjs-client": "^1.1.1",
+    "@types/stompjs": "^2.3.4",
+    "@types/text-encoding": "0.0.35",
+    "better-queue": "^3.8.10",
+    "inversify": "^5.0.1",
+    "kue": "^0.11.6",
+    "modbus-serial": "^7.7.4",
+    "nodemon": "^2.0.2",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.4",
+    "serialport": "^8.0.6",
+    "sockjs-client": "^1.4.0",
+    "stompjs": "^2.3.3",
+    "text-encoding": "^0.7.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.4",
+    "typescript-collections": "^1.3.3",
+    "websocket": "^1.0.31"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ssanduta",
+  "license": "MIT"
+}
