@@ -8,7 +8,7 @@ Since this application was developed on Arduino Nano 3.0, in Boards you must sel
 If you want to upload the code into physical microcontroller, you must connect your Arduino Nano into the laptop via USB cable. Once it is connected, check in the Device Manager
 which COM port is used for the communication, and select that port in Arduino IDE. Now you can upload your code.
 
-You can check the electrical scheme at ...
+You can check the electrical scheme at https://github.com/HunYahiko/smart-parking-system/wiki/Electrical-Scheme
 
 So, what does this device do? Since this device represents a parking spots, it receives messages from server with a certain function to execute. The main functions are
 giving the server a feedback about parking spot status and blocking the spot. The device has 3 LEDs, which represent the state of the spot. Green means FREE, red means OCCUPIED
