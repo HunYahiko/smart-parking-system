@@ -4,8 +4,8 @@ import com.utm.stanislav.parkingapp.web.interceptor.decorator.MessageHeadersDeco
 import com.utm.stanislav.parkingapp.model.exceptions.HeaderValueNotFoundException;
 import com.utm.stanislav.parkingapp.model.exceptions.RPiBridgeNotFoundException;
 import com.utm.stanislav.parkingapp.service.rpibridge.RPiBridgeService;
-import javafx.util.Pair;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.simp.stomp.StompCommand;

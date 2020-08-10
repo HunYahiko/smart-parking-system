@@ -1,7 +1,8 @@
 package com.utm.stanislav.parkingapp.web.interceptor.decorator;
 
 import com.utm.stanislav.parkingapp.model.exceptions.HeaderValueNotFoundException;
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 
@@ -29,7 +30,7 @@ public class MessageHeadersDecorator {
         Object nativeHeaders = getNativeHeadersOrReturnEmptyMap();
         String login = retrieveHeaderValue(nativeHeaders, LOGIN_HEADER_NAME);
         String password = retrieveHeaderValue(nativeHeaders, PASSWORD_HEADER_NAME);
-        return new Pair<>(login, password);
+        return new ImmutablePair<>(login, password);
     }
     
     private Object getNativeHeadersOrReturnEmptyMap() {
