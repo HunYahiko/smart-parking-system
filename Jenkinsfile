@@ -42,7 +42,7 @@ pipeline {
                         script {
                             dir('sps-backend') {
                                 echo 'Building back-end project...'
-                                withMaven(maven: 'maven3.6', mavenOpts: '-Dmaven.test.skip=true') {
+                                withMaven(maven: 'maven3.5.2', mavenOpts: '-Dmaven.test.skip=true') {
                                     sh("mvn clean install")
                                 }
                             }
