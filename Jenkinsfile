@@ -42,7 +42,7 @@ pipeline {
                         script {
                             dir('sps-backend') {
                                 echo 'Building back-end project...'
-                                withMaven(maven: 'maven3.5.2', mavenOpts: '-Dmaven.test.skip=true') {
+                                withMaven(maven: 'maven3.6.0', mavenOpts: '-Dmaven.test.skip=true') {
                                     sh("mvn clean install")
                                 }
                             }
@@ -54,7 +54,7 @@ pipeline {
                         script {
                             dir ('sps-frontend') {
                                 echo 'Building front-end project...'
-                                nodejs('NodeJS12.16') {
+                                nodejs('nodejs12.16') {
                                     echo 'Installing dependencies...'
                                     sh('npm i')
                                     echo 'Building project...'
