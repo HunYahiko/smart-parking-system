@@ -66,5 +66,19 @@ pipeline {
                 }
             }
         }
+		stage('build docker images') {
+            stages {
+                stage('build docker image for back-end project') {
+                    steps {
+                        script {
+                            dir('sps-backend') {
+                                echo 'Building docker image for back-end project...'
+                                def image = docker.build "sps-backend-image"
+                            }
+                        }
+                    }
+                }
+            }
+		}
     }
 }
