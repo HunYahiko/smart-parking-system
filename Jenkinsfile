@@ -58,7 +58,7 @@ pipeline {
                                     echo 'Installing dependencies...'
                                     sh('npm i')
                                     echo 'Building project...'
-                                    sh('npm run build')
+                                    sh('npm run build_prod')
                                 }
                             }
                         }
@@ -78,6 +78,16 @@ pipeline {
                         }
                     }
                 }
+				stage('build docker image for front-end project') {
+					steps {
+						script {
+							dir('sps-frontend') {
+								echo 'Building docker image for front-end project...'
+								def image = docker.build "sps-frontend-image"
+							}
+						}
+					}
+				}
             }
 		}
     }
