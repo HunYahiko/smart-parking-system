@@ -11,7 +11,7 @@ import {LevelNameListingDto} from '../domain/dto/level-name-listing-dto.model';
   providedIn: 'root'
 })
 export class ParkingLayoutService {
-  private readonly BASE_URL = 'http://localhost:8080';
+  private readonly BASE_URL = 'environment.back_end_url';
   private readonly LAYOUTS_RESOURCE = '/v1/api/layouts';
   private readonly NAME_LISTING_RESOURCE = '/v1/api/layouts/nameListing';
 

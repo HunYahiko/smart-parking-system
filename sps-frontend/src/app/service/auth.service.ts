@@ -4,12 +4,13 @@ import {LoginDto} from '../domain/dto/login-dto.model';
 import {Observable} from 'rxjs';
 import {TokenResponseDto} from '../domain/dto/token-response-dto.model';
 import {UserDto} from '../domain/dto/user-dto.model';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly BASE_URL: string = 'http://localhost:8080';
+  private readonly BASE_URL: string = environment.back_end_url;
   private readonly SING_IN_URL: string = '/v1/api/auth/sing-in';
   private readonly SING_UP_URL: string = '/v1/api/users';
   public readonly TOKEN_KEY: string = 'jwtToken';
