@@ -126,5 +126,24 @@ pipeline {
                 }
             }
 		}
+        stage('deploy to application instance') {
+            steps {
+                script {
+                    sshagent(credentials: ['app-instance-credentials']) {
+                        withCredentials([
+                                usernamePassword(credentialsId: dockerRegistryCredential,
+                                        usernameVariable: 'username',
+                                        passwordVariable: 'password')
+                        ]) {
+                            sh('ssh -o StrictHostKeyChecking=no ezio125_gmail_com@smart-parking-system uptime')
+                            sh('ssh -v ezio125_gmail_com@smart-parking-system')
+                            sh('sudo docker login -u ' + username + ' -p ' + password)
+                            sh('sudo docker run --rm -d -p 8080:8080 ' + backendImageName)
+                            sh('sudo docker run --rm -d -p 80:4200 ' + frontendImageName)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
