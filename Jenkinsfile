@@ -8,7 +8,13 @@ pipeline {
         def repoName = "";
         def branchName = "";
         def versionName = "";
-    }
+        def frontendImageName = "";
+        def backendImageName = "";
+        def dockerRegistryCredential = 'sps-dockerhub'
+        def dockerRegistry = "spsproject/app"
+        def backendImage;
+        def frontendImage;
+     }
 
     stages {
         stage('Init') {
@@ -18,6 +24,8 @@ pipeline {
                     repoName = "git@github.com:HunYahiko/smart-parking-system.git"
                     branchName = env.BRANCH_NAME
                     versionName = env.BRANCH_NAME
+                    backendImageName = "${dockerRegistry}:sps-backend-latest"
+                    frontendImageName = "${dockerRegistry}:sps-frontend-latest"
                 }
 
             }
@@ -73,7 +81,7 @@ pipeline {
                         script {
                             dir('sps-backend') {
                                 echo 'Building docker image for back-end project...'
-                                def image = docker.build "sps-backend-image"
+                                backendImage = docker.build ${backendImageName}
                             }
                         }
                     }
@@ -83,11 +91,39 @@ pipeline {
 						script {
 							dir('sps-frontend') {
 								echo 'Building docker image for front-end project...'
-								def image = docker.build "sps-frontend-image"
+								frontendImage = docker.build ${frontendImageName}
 							}
 						}
 					}
 				}
+            }
+		}
+		stage('push docker images to repository') {
+			stages {
+                stage('push back-end image to repository') {
+                    steps {
+                        script {
+                            dir('sps-backend') {
+                                echo 'Pushing back-end image to dockerhub...'
+                                docker.withRegistry(dockerRegistry, dockerRegistryCredential) {
+                                    backendImage.push();
+                                }
+                            }
+                        }
+                    }
+                }
+                stage('push front-end image to repository') {
+                    steps {
+                        script {
+                            dir('sps-frontend') {
+                                echo 'Pushing front-end image to dockerhub...'
+                                docker.withRegistry(dockerRegistry, dockerRegistryCredential) {
+                                    frontendImage.push();
+                                }
+                            }
+                        }
+                    }
+                }
             }
 		}
     }
