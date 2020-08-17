@@ -105,7 +105,7 @@ pipeline {
                         script {
                             dir('sps-backend') {
                                 echo 'Pushing back-end image to dockerhub...'
-                                docker.withRegistry(dockerRegistry, dockerRegistryCredential) {
+                                docker.withRegistry('', dockerRegistryCredential) {
                                     backendImage.push();
                                 }
                             }
@@ -117,7 +117,7 @@ pipeline {
                         script {
                             dir('sps-frontend') {
                                 echo 'Pushing front-end image to dockerhub...'
-                                docker.withRegistry(dockerRegistry, dockerRegistryCredential) {
+                                docker.withRegistry('', dockerRegistryCredential) {
                                     frontendImage.push();
                                 }
                             }
