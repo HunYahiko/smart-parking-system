@@ -81,7 +81,7 @@ pipeline {
                         script {
                             dir('sps-backend') {
                                 echo 'Building docker image for back-end project...'
-                                backendImage = docker.build ${backendImageName}
+                                backendImage = docker.build backendImageName
                             }
                         }
                     }
@@ -91,7 +91,7 @@ pipeline {
 						script {
 							dir('sps-frontend') {
 								echo 'Building docker image for front-end project...'
-								frontendImage = docker.build ${frontendImageName}
+								frontendImage = docker.build frontendImageName
 							}
 						}
 					}
