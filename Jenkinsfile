@@ -136,7 +136,7 @@ pipeline {
                                         passwordVariable: 'password')
                         ]) {
                             sh('sshpass -p "jenkins" ssh -o StrictHostKeyChecking=no jenkins@smart-parking-system uptime')
-                            sh('ssh -v ezio125_gmail_com@smart-parking-system')
+                            sh('ssh -v jenkins@smart-parking-system')
                             sh('sudo docker login -u ' + username + ' -p ' + password)
                             sh('sudo docker run --rm -d -p 8080:8080 ' + backendImageName)
                             sh('sudo docker run --rm -d -p 80:4200 ' + frontendImageName)
