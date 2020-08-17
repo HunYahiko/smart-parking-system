@@ -12,8 +12,8 @@ pipeline {
         def backendImageName = "";
         def dockerRegistryCredential = 'sps-dockerhub'
         def dockerRegistry = "spsproject/app"
-        def backendImage;
-        def frontendImage;
+        def backendImage = '';
+        def frontendImage = '';
      }
 
     stages {
