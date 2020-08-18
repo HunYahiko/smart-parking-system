@@ -148,7 +148,7 @@ pipeline {
                                   docker pull ${backendImageName}
                                   docker pull ${frontendImageName}
                                   docker run --rm -d -p 8080:8080 --name ${backendContainerName} ${backendImageName}
-                                  docker run --rm -d -p 80:4200 --name ${frontendContainerName} ${frontendImageName}
+                                  docker run --rm -d -p 80:80 --name ${frontendContainerName} ${frontendImageName}
                                   exit
                             EOF 
                             """)
