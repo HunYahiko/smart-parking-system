@@ -137,6 +137,8 @@ pipeline {
                         ]) {
                             sh("""sshpass -p "jenkins" ssh -o StrictHostKeyChecking=no jenkins@smart-parking-system << EOF
                                   docker login -u ${username} -p ${password}
+                                  docker rm \$(docker stop \$(docker ps -a -q --filter ancestor=${backendImageName} --format="{{.ID}}"))
+                                  docker rm \$(docker stop \$(docker ps -a -q --filter ancestor=${frontendImageName} --format="{{.ID}}"))
                                   docker run --rm -d -p 8080:8080 ${backendImageName}
                                   docker run --rm -d -p 80:4200 ${frontendImageName}
                                   exit
