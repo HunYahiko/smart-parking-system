@@ -135,6 +135,8 @@ pipeline {
                                         usernameVariable: 'username',
                                         passwordVariable: 'password')
                         ]) {
+                            def backendContainerName = "sps-backend"
+                            def frontendContainerName = "sps-backend"
                             sh("""sshpass -p "jenkins" ssh -o StrictHostKeyChecking=no jenkins@smart-parking-system << EOF
                                   docker login -u ${username} -p ${password}
                                   docker stop ${backendImageName}
@@ -145,8 +147,8 @@ pipeline {
                                   docker image rm ${frontendImageName}
                                   docker pull ${backendImageName}
                                   docker pull ${frontendImageName}
-                                  docker run --rm -d -p 8080:8080 --name ${backendImageName} ${backendImageName}
-                                  docker run --rm -d -p 80:4200 --name ${frontendImageName} ${frontendImageName}
+                                  docker run --rm -d -p 8080:8080 --name ${backendContainerName} ${backendImageName}
+                                  docker run --rm -d -p 80:4200 --name ${frontendContainerName} ${frontendImageName}
                                   exit
                             EOF 
                             """)
