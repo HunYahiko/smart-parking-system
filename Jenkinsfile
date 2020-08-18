@@ -135,16 +135,25 @@ pipeline {
                                         usernameVariable: 'username',
                                         passwordVariable: 'password')
                         ]) {
-                            sh """sshpass -p "jenkins" ssh -o StrictHostKeyChecking=no jenkins@smart-parking-system uptime << EOF
+                            sh("""sshpass -p "jenkins" ssh -o StrictHostKeyChecking=no jenkins@smart-parking-system << EOF
                                   docker login -u ${username} -p ${password}
                                   docker run --rm -d -p 8080:8080 ${backendImageName}
                                   docker run --rm -d -p 80:4200 ${frontendImageName}
                                   exit
-                               EOF """
+                            EOF 
+                            """)
                         }
                     }
                 }
             }
+        }
+    }
+    post {
+        failure {
+            emailext body: "Build of ${branchName} branch failed. Please check the CLI of latest build!",
+                    recipientProviders: [[$class: 'DevelopersRecipientProvider'],
+                                         [$class: 'RequesterRecipientProvider']],
+                    subject: 'SPS build failed'
         }
     }
 }
