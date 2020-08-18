@@ -141,6 +141,8 @@ pipeline {
                                   docker stop ${frontendImageName}
                                   docker rm ${backendImageName}
                                   docker rm ${frontendImageName}
+                                  docker image rm ${backendImageName}
+                                  docker image rm ${frontendImageName}
                                   docker pull ${backendImageName}
                                   docker pull ${frontendImageName}
                                   docker run --rm -d -p 8080:8080 --name ${backendImageName} ${backendImageName}
