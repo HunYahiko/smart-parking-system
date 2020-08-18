@@ -5,13 +5,14 @@ import {ParkingLotPositionDto} from '../domain/dto/parking-lot-position-dto.mode
 import {ParkingLayoutDto} from '../domain/dto/parking-layout-dto.model';
 import {LevelLayoutDto} from '../domain/dto/level-layout-dto.model';
 import {LevelNameListingDto} from '../domain/dto/level-name-listing-dto.model';
+import {environment} from '../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ParkingLayoutService {
-  private readonly BASE_URL = 'environment.back_end_url';
+  private readonly BASE_URL = environment.back_end_url;
   private readonly LAYOUTS_RESOURCE = '/v1/api/layouts';
   private readonly NAME_LISTING_RESOURCE = '/v1/api/layouts/nameListing';
 
