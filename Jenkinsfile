@@ -143,7 +143,6 @@ pipeline {
                                   docker rm ${frontendImageName}
                                   docker pull ${backendImageName}
                                   docker pull ${frontendImageName}
-                                  docker rm \$(docker stop \$(docker ps -a -q --filter="name=<imageName>"))
                                   docker run --rm -d -p 8080:8080 --name ${backendImageName} ${backendImageName}
                                   docker run --rm -d -p 80:4200 --name ${frontendImageName} ${frontendImageName}
                                   exit
