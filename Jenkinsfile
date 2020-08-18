@@ -139,10 +139,10 @@ pipeline {
                             def frontendContainerName = "sps-backend"
                             sh("""sshpass -p "jenkins" ssh -o StrictHostKeyChecking=no jenkins@smart-parking-system << EOF
                                   docker login -u ${username} -p ${password}
-                                  docker stop ${backendImageName}
-                                  docker stop ${frontendImageName}
-                                  docker rm ${backendImageName}
-                                  docker rm ${frontendImageName}
+                                  docker stop ${backendContainerName}
+                                  docker stop ${frontendContainerName}
+                                  docker rm ${backendContainerName}
+                                  docker rm ${frontendContainerName}
                                   docker image rm ${backendImageName}
                                   docker image rm ${frontendImageName}
                                   docker pull ${backendImageName}
