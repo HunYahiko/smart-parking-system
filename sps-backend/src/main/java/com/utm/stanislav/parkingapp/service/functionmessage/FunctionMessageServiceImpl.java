@@ -5,6 +5,7 @@ import com.utm.stanislav.parkingapp.model.enums.*;
 import com.utm.stanislav.parkingapp.model.FunctionMessage;
 import com.utm.stanislav.parkingapp.model.ParkingLot;
 import com.utm.stanislav.parkingapp.model.RPiBridge;
+import com.utm.stanislav.parkingapp.repository.BookRequestRepository;
 import com.utm.stanislav.parkingapp.service.booking.BookRequestService;
 import com.utm.stanislav.parkingapp.service.parkinglot.ParkingLotService;
 import com.utm.stanislav.parkingapp.web.dto.ResponseMessageDto;
@@ -23,13 +24,8 @@ import java.util.stream.Collectors;
 public class FunctionMessageServiceImpl implements FunctionMessageService {
     
     private final ParkingLotService parkingLotService;
-    private BookRequestService bookRequestService;
-    
-    @Inject
-    public void setBookRequestService(BookRequestService bookRequestService) {
-        this.bookRequestService = bookRequestService;
-    }
-    
+    private BookRequestRepository bookRequestRepository;
+
     @Override
     @Transactional
     public List<FunctionMessage> generateFor(RPiBridge rPiBridge, FunctionCode functionCode) {
@@ -108,13 +104,13 @@ public class FunctionMessageServiceImpl implements FunctionMessageService {
         String bookingStatus = splitResponseData.get(1);
         if (responseMessage.getResponseStatus().equals(ResponseStatus.OK) && bookingStatus.equals("OK")) {
             if (parkingLotOptional.isPresent()) {
-                Optional<BookRequest> bookRequestOptional = bookRequestService.getFor(parkingLotOptional.get());
+                Optional<BookRequest> bookRequestOptional = bookRequestRepository.findByParkingLot(parkingLotOptional.get());
                 bookRequestOptional.ifPresent(bookRequest -> bookRequest.setBookRequestStatus(BookRequestStatus.CONFIRMED));
             }
         }
         else {
             if (parkingLotOptional.isPresent()) {
-                Optional<BookRequest> bookRequestOptional = bookRequestService.getFor(parkingLotOptional.get());
+                Optional<BookRequest> bookRequestOptional = bookRequestRepository.findByParkingLot(parkingLotOptional.get());
                 bookRequestOptional.ifPresent(bookRequest -> {
                     if (bookRequest.getFailedAttempts() > 3) {
                         bookRequest.setBookRequestStatus(BookRequestStatus.FAILED);
@@ -135,8 +131,8 @@ public class FunctionMessageServiceImpl implements FunctionMessageService {
         String unblockingStatus = splitResponseData.get(1);
         if (responseMessage.getResponseStatus().equals(ResponseStatus.OK) && unblockingStatus.equals("OK")) {
             if (parkingLotOptional.isPresent()) {
-                Optional<BookRequest> bookRequestOptional = bookRequestService.getFor(parkingLotOptional.get());
-                bookRequestOptional.ifPresent(bookRequest -> bookRequestService.delete(bookRequest));
+                Optional<BookRequest> bookRequestOptional = bookRequestRepository.findByParkingLot(parkingLotOptional.get());
+                bookRequestOptional.ifPresent(bookRequest -> bookRequestRepository.delete(bookRequest));
             }
         }
         else {
